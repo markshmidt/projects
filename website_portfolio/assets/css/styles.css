@@ -1,0 +1,209 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Box styling */
+#introduction, #work, #contact, #about-me, #timeline {
+    animation: fadeIn 2s ease-in-out;
+    padding: 40px 20px;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:40px;
+    max-width: 800px;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #007bff;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+/* Timeline Items */
+.timeline-item {
+    position: relative;
+    margin: 30px 0;
+    padding: 20px;
+    width: 70%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+/* Timeline container */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    position: relative; /* Allows the boxes to be positioned above the line */
+    z-index: 1; /* Keep boxes above the blue line */
+}
+
+/* Timeline Items (Individual Boxes) */
+.timeline-item {
+    position: relative;
+    width: 70%; /* Ensure the box width doesn't cover the line */
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 2; /* Ensure boxes are always on top of the blue line */
+}
+
+/* Hover effect */
+.timeline-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Expanded timeline item */
+.timeline-item[data-expanded="true"] {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}
+
+/* Timeline dates */
+.timeline-date {
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+/* Click-here text */
+.click-here {
+    font-size: 0.9rem;
+    color: #6c757d;
+    transition: opacity 0.3s ease;
+}
+
+/* Hide 'Click here' when expanded */
+.timeline-item[data-expanded="true"] .click-here {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Hidden detail box */
+.timeline-detail {
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-left: 4px solid #007bff;
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Show details when expanded */
+.timeline-item[data-expanded="true"] .timeline-detail {
+    display: block;
+}
+
+/* Expanded Timeline Item */
+.timeline-item[data-expanded="true"] {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}
+
+/* Adjust Date Styling */
+.timeline-date {
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+.timeline-content h6{
+    font-weight: lighter;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+
+/* Customize buttons */
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+}
+
+.btn-outline-primary {
+    border: 2px solid #007bff;
+    color: #007bff;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+}
+
+
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Image */
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 200px;
+    object-fit: cover; /* Ensures image maintains aspect ratio */
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+}
