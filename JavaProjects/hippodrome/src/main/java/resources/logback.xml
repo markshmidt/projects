@@ -1,0 +1,29 @@
+<configuration>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/hippodrome.log</file>
+
+        <!-- Настройка политики ролловера (создания новых файлов) -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Шаблон имени файлов лога -->
+            <fileNamePattern>logs/hippodrome.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- Хранить логи за последние 7 дней -->
+            <maxHistory>7</maxHistory>
+            <!-- Удаление старых файлов -->
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+        <!-- Настройка формата логов -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} [%level] %logger{10}: %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Уровень логирования -->
+    <root level="debug">
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
