@@ -15,84 +15,91 @@ import java.util.List;
 public class LogicServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // current session
+        // Current session
         HttpSession currentSession = req.getSession();
 
-        // get field object out of session
+        // Get field object out of session
         Field field = extractField(currentSession);
 
-        // get index of what was clicked
+        // Check if there's already a winner
+        if (currentSession.getAttribute("winner") != null) {
+            resp.sendRedirect("/index.jsp");
+            return;
+        }
+
+        // Get index of what was clicked
         int index = getSelectedIndex(req);
         Sign currentSign = field.getField().get(index);
 
-        //if sign not empty, send user to the same page without changes
+        // If cell is not empty, redirect
         if (Sign.EMPTY != currentSign) {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
             dispatcher.forward(req, resp);
             return;
         }
 
-        // put cross
+        // Place 'X'
         field.getField().put(index, Sign.CROSS);
         if (checkWin(resp, currentSession, field)) {
             return;
         }
 
-        //get empty space
-        int emptyFieldIndex = field.getEmptyFieldIndex();
+        // Get all empty spaces
+        List<Integer> emptyFields = field.getEmptyFieldIndices();
 
-        //put zero
-        if (emptyFieldIndex >= 0) {
-            field.getField().put(emptyFieldIndex, Sign.NOUGHT);
-            // Проверяем, не победил ли нолик после добавление последнего нолика
-            if (checkWin(resp, currentSession, field)) {
-                return;
-            }
-        }else {
-            //if draw
-            // add flag that it's a draw
+        // Check for a draw
+        if (emptyFields.isEmpty()) {
             currentSession.setAttribute("draw", true);
-
-            // count list of signs
-            List<Sign> data = field.getFieldData();
-
-            // update list in session
-            currentSession.setAttribute("data", data);
-
-            // redirect
+            currentSession.setAttribute("data", field.getFieldData());
             resp.sendRedirect("/index.jsp");
             return;
         }
-        // count list of attributes
-        List<Sign> data = field.getFieldData();
 
-        // Update field object and attributes
-        currentSession.setAttribute("data", data);
+        // Check if we can block X from winning
+        int blockIndex = field.getBlockingIndex(Sign.CROSS);
+
+        if (blockIndex != -1) {
+            // Block X from winning
+            field.getField().put(blockIndex, Sign.NOUGHT);
+        } else {
+            // No block needed; place O in the first empty space
+            int firstEmptyIndex = emptyFields.get(0);
+            field.getField().put(firstEmptyIndex, Sign.NOUGHT);
+        }
+
+        // Check if O wins after the last move
+        if (checkWin(resp, currentSession, field)) {
+            return;
+        }
+
+        // Update session attributes
+        currentSession.setAttribute("data", field.getFieldData());
         currentSession.setAttribute("field", field);
 
+        // Redirect to the game page
         resp.sendRedirect("/index.jsp");
     }
 
-    //checking if there are three crosses/noughts in one row
+
+    // Checking if there are three crosses/noughts in one row
     private boolean checkWin(HttpServletResponse response, HttpSession currentSession, Field field) throws IOException {
         Sign winner = field.checkWin();
         if (Sign.CROSS == winner || Sign.NOUGHT == winner) {
-            // add flag showing winner
+            // Add flag showing winner
             currentSession.setAttribute("winner", winner);
 
-            // counting list of signs
+            // Counting list of signs
             List<Sign> data = field.getFieldData();
 
-            // update the list in session
+            // Update the list in session
             currentSession.setAttribute("data", data);
 
-            // redirect
+            // Redirect
             response.sendRedirect("/index.jsp");
             return true;
         }
         return false;
     }
-
 
     private int getSelectedIndex(HttpServletRequest request) {
         String click = request.getParameter("click");
@@ -108,5 +115,4 @@ public class LogicServlet extends HttpServlet {
         }
         return (Field) fieldAttribute;
     }
-
 }
