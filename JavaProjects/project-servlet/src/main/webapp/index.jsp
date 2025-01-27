@@ -8,7 +8,6 @@
     <title>Tic-Tac-Toe</title>
     <link href="${pageContext.request.contextPath}/static/main.css" rel="stylesheet">
 
-
 </head>
 <body>
 <h1>Tic-Tac-Toe</h1>
@@ -17,32 +16,32 @@
         <td onclick="window.location='/logic?click=0'" class="${data.get(0) == CROSSES ? 'CROSS' : data.get(0) == NOUGHTS ? 'NOUGHT' : ''}">
             ${data.get(0).getSign()}
         </td>
-        <td onclick="window.location='/logic?click=1'" class="${data.get(1) == CROSSES ? 'CROSS' : data.get(1) == NOUGHTS ? 'NOUGHT' : ''}">
+        <td onclick="window.location='/logic?click=1'" class="${data.get(1) == CROSSES ? 'CROSS' : data.get(1)== NOUGHTS ? 'NOUGHT' : ''}">
             ${data.get(1).getSign()}
         </td>
-        <td onclick="window.location='/logic?click=2'" class="${data.get(2) == CROSSES ? 'CROSS' : data.get(2) == NOUGHTS ? 'NOUGHT' : ''}">
+        <td onclick="window.location='/logic?click=2'" class="${data.get(2).name() == CROSSES ? 'CROSS' : data.get(2).name() == NOUGHTS ? 'NOUGHT' : ''}">
             ${data.get(2).getSign()}
         </td>
     </tr>
     <tr>
-        <td onclick="window.location='/logic?click=3'" class="${data.get(3) == CROSSES ? 'CROSS' : data.get(3) == NOUGHTS ? 'NOUGHT' : ''}">
+        <td onclick="window.location='/logic?click=3'" class="${data.get(3).name() == CROSSES ? 'CROSS' : data.get(3).name() == NOUGHTS ? 'NOUGHT' : ''}">
             ${data.get(3).getSign()}
         </td>
-        <td onclick="window.location='/logic?click=4'" class="${data.get(4) == CROSSES ? 'CROSS' : data.get(4) == NOUGHTS ? 'NOUGHT' : ''}">
+        <td onclick="window.location='/logic?click=4'" class="${data.get(4).name() == CROSSES ? 'CROSS' : data.get(4).name() == NOUGHTS ? 'NOUGHT' : ''}">
             ${data.get(4).getSign()}
         </td>
-        <td onclick="window.location='/logic?click=5'" class="${data.get(5) == CROSSES ? 'CROSS' : data.get(5) == NOUGHTS ? 'NOUGHT' : ''}">
+        <td onclick="window.location='/logic?click=5'" class="${data.get(5).name() == CROSSES ? 'CROSS' : data.get(5).name() == NOUGHTS ? 'NOUGHT' : ''}">
             ${data.get(5).getSign()}
         </td>
     </tr>
     <tr>
-        <td onclick="window.location='/logic?click=6'" class="${data.get(6) == CROSSES ? 'CROSS' : data.get(6) == NOUGHTS ? 'NOUGHT' : ''}">
+        <td onclick="window.location='/logic?click=6'" class="${data.get(6).name() == CROSSES ? 'CROSS' : data.get(6).name() == NOUGHTS ? 'NOUGHT' : ''}">
             ${data.get(6).getSign()}
         </td>
-        <td onclick="window.location='/logic?click=7'" class="${data.get(7) == CROSSES ? 'CROSS' : data.get(7) == NOUGHTS ? 'NOUGHT' : ''}">
+        <td onclick="window.location='/logic?click=7'" class="${data.get(7).name() == CROSSES ? 'CROSS' : data.get(7).name() == NOUGHTS ? 'NOUGHT' : ''}">
             ${data.get(7).getSign()}
         </td>
-        <td onclick="window.location='/logic?click=8'" class="${data.get(8) == CROSSES ? 'CROSS' : data.get(8) == NOUGHTS ? 'NOUGHT' : ''}">
+        <td onclick="window.location='/logic?click=8'" class="${data.get(8).name() == CROSSES ? 'CROSS' : data.get(8).name() == NOUGHTS ? 'NOUGHT' : ''}">
             ${data.get(8).getSign()}
         </td>
     </tr>

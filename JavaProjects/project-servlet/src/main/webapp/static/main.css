@@ -9,11 +9,16 @@ td {
     text-align: center;
     empty-cells: show;
 }
+
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+    background-color: #f4f4f4;
     font-family: Arial, sans-serif;
     text-align: center;
-    margin-top: 50px;
-    background-color: #f4f4f4;
 }
 
 h1 {
@@ -58,16 +63,16 @@ button.restart {
 button.restart:hover {
     background-color: #555;
 }
-.CROSS{
+.CROSS {
     color: red;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 50px;
     text-align: center;
 }
 
-.NOUGH {
+.NOUGHT {
     color: blue;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 50px;
     text-align: center;
 }
