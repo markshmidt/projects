@@ -194,10 +194,11 @@ header {
 
 /* Card Image */
 .card-img-top {
+    width: 100%; /* Ensure it fits the card's width */
+    height: 400px; /* Set a fixed height to make it square-like */
+    object-fit: cover; /* Ensures the image fills the square without distortion */
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    height: 200px;
-    object-fit: cover; /* Ensures image maintains aspect ratio */
 }
 
 /* Button Styling */
