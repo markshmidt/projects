@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane fx:id="main_parent" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.group44.assignment2.controllers.MainController">
+    <left>
+        <VBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: #F4F4F4; -fx-padding: 15;"
+              BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="dashboardButton" mnemonicParsing="false" onAction="#openDashboard" text="Dashboard"
+                        styleClass="side-button" maxWidth="Infinity" />
+                <Button fx:id="departmentButton" mnemonicParsing="false"
+                        onAction="#openDepartments" text="Manage Departments"
+                        styleClass="side-button" maxWidth="Infinity" />
+                <Button fx:id="employeeButton" mnemonicParsing="false" onAction="#openEmployees" text="Manage Employees"
+                        styleClass="side-button" maxWidth="Infinity" />
+                <Button fx:id="payrollButton" mnemonicParsing="false" onAction="#openPayrolls" text="Manage Payrolls"
+                        styleClass="side-button" maxWidth="Infinity" />
+                <Button fx:id="shiftButton" mnemonicParsing="false" onAction="#openShifts" text="Manage Shifts"
+                        styleClass="side-button" maxWidth="Infinity" />
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <fx:include source="dashboard.fxml" />
+    </center>
+    <top>
+        <HBox alignment="CENTER_RIGHT" prefHeight="50.0" spacing="10.0"
+              style="-fx-background-color: #0078D7; -fx-padding: 10;" BorderPane.alignment="CENTER">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, User" fx:id="welcomeText"
+                      styleClass="top-text" />
+                <Button mnemonicParsing="false" text="Logout" onAction="#logout" styleClass="logout-button" />
+            </children>
+        </HBox>
+    </top>
+</BorderPane>

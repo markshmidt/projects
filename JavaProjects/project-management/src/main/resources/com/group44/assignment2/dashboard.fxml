@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group44.assignment2.controllers.DashboardController">
+   <children>
+      <VBox alignment="CENTER" spacing="15.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Shift Status: Off" styleClass="shift-text" />
+         <Button fx:id="shiftButton" mnemonicParsing="false" styleClass="central-button" text="Begin Shift" />
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Shift History" styleClass="shift-text" />
+         <Text fx:id="shiftStatusText" layoutX="100" layoutY="50" text="Status" />
+
+      </VBox>
+   </children>
+</AnchorPane>

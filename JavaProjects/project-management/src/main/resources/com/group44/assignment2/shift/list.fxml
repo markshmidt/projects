@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group44.assignment2.controllers.shift.ListController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <HBox prefWidth="200.0">
+               <children>
+                  <Label maxWidth="1.7976931348623157E308" text="Shift List" HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#add" text="Add" fx:id="addButton" />
+               </children>
+            </HBox>
+            <ListView fx:id="shiftList" maxHeight="1.7976931348623157E308" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
