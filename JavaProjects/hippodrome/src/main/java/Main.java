@@ -21,7 +21,7 @@ public class Main {
         for (int i = 0; i < 10; i++) {
             hippodrome.move();
             watch(hippodrome);
-            TimeUnit.MILLISECONDS.sleep(200);
+            TimeUnit.MILLISECONDS.sleep(1000);
         }
 
         String winnerName = hippodrome.getWinner().getName();
