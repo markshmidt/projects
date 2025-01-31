@@ -218,15 +218,45 @@ main h4{
 
 }
 
-/* First row animation */
-.first-row {
-    animation: fadeIn 1s ease-in-out;
+
+/* Animations */
+/* General fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Second row animation */
-.second-row {
-    animation: fadeInUp 1s ease-in-out;
+/* Animation for different sections */
+.project-container, .contact-container {
+    opacity: 0; /* Start hidden */
+    animation: fadeIn 1s ease-in-out forwards;
 }
+
+/* Delayed animation for each project card */
+.project-card {
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Adding delay for staggered effect */
+.card:nth-child(1) { animation-delay: 0.3s; }
+.project-card:nth-child(2) { animation-delay: 0.6s; }
+.project-card:nth-child(3) { animation-delay: 0.9s; }
+.project-card:nth-child(4) { animation-delay: 1.2s; }
+.project-card:nth-child(5) { animation-delay: 1.5s; }
+.project-card:nth-child(6) { animation-delay: 1.8s; }
+
+
+#introduction {animation-delay: 0.2s;}
+#work {animation-delay: 0.5s;}
+#contact {animation-delay: 0.8s;}
+
 .row-separator {
     height: 50px;
     width: 100%;
@@ -240,27 +270,7 @@ main h4{
         height: 30px; /
     }
 }
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
 /* Contact Info Styling */
 .contact-info {
@@ -307,3 +317,5 @@ main h4{
     padding: 10px;
     font-size: 1rem;
 }
+
+
