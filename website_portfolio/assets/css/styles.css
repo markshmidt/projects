@@ -1,4 +1,4 @@
-/* 🔹 GENERAL PAGE STYLING */
+/* GENERAL PAGE STYLING */
 *{
     font-family: Calibri, sans-serif;
     margin: 0;
@@ -16,7 +16,7 @@ body {
 
 }
 
-/* 🔹 HEADER MENU */
+/* HEADER STYLING */
 nav ul {
     display: flex;
     justify-content: right;
@@ -35,8 +35,57 @@ nav a {
 nav a:hover {
     color: #00b7ff;
 }
+/* Transparent Header */
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    background: transparent;
+}
+.header-scrolled {
+    background-color: rgba(53, 97, 229, 0.25);
+    transition: background-color 0.3s ease-in-out;
+}
 
-/* 🔹 MAIN CONTAINER */
+.header-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo Styling */
+.logo img {
+    height: 45px;
+    width: auto;
+}
+
+/* Navigation Menu */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+.nav-links li a {
+    text-decoration: none;
+    font-size: 30px; /* Match your design */
+    color: white;
+    font-family: Calibri, sans-serif;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #00b7ff;
+}
+
+
+/* MAIN PAGE */
 .home-container {
     display: flex;
     align-items: center;
@@ -45,7 +94,6 @@ nav a:hover {
     padding: 50px;
 }
 
-/* 🔹 FLEX LAYOUT */
 .content {
     display: flex;
     align-items: center;
@@ -53,7 +101,6 @@ nav a:hover {
     gap: 50px;
 }
 
-/* 🔹 PROFILE IMAGE */
 .profile img {
     width: 400px;
     height: 400px;
@@ -63,7 +110,6 @@ nav a:hover {
     border: 5px solid white;
 }
 
-/* 🔹 TEXT BLOCK */
 .info {
     max-width: 800px;
     height: 365px;
@@ -84,7 +130,7 @@ nav a:hover {
     line-height: 1.5;
 }
 
-/* 🔹 BUTTONS */
+/* BUTTONS */
 .buttons {
     display: flex;
     gap: 20px;
@@ -101,7 +147,6 @@ nav a:hover {
     border: none;
     border-radius: 30px;
     text-align: center;
-    font-family: Calibri, sans-serif;
     text-decoration: none;
     line-height: 60px;
     font-weight: bold;
@@ -114,67 +159,13 @@ nav a:hover {
     transform: scale(1.05);
 }
 
-/* Transparent Header */
-.header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    padding: 20px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1000;
-    background: transparent;
-}
-.header-scrolled {
-    background-color: rgba(53, 97, 229, 0.25);
-    transition: background-color 0.3s ease-in-out;
-}
 
-/* Container inside Header */
-.header-container {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* Logo Styling */
-.logo img {
-    height: 45px;
-    width: auto;
-}
-
-/* Navigation Menu */
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-}
-
-/* Menu Links */
-.nav-links li a {
-    text-decoration: none;
-    font-size: 30px; /* Match your design */
-    color: white;
-    font-family: Calibri, sans-serif;
-    transition: color 0.3s ease;
-}
-
-/* Hover Effect */
-.nav-links li a:hover {
-    color: #00b7ff;
-}
-
+/* ABOUT ME PAGE*/
 body.about-page {
     background-image: url('../img/background1.png');
     background-size: cover;
     background-attachment: fixed;
 }
-
-
-/* About Me Section */
 #about-me {
     width: 75%;
     margin: auto;
@@ -183,40 +174,33 @@ body.about-page {
     font-family: Calibri, sans-serif;
     text-align: center;
 }
-
-
-/* Heading for About Me */
 #about-me h1 {
     margin-top: 100px;
     font-size: 50px;
     color: #00b7ff;
     margin-bottom: 20px;
 }
-
-/* Paragraph styling */
 #about-me p {
     font-size: 22px;
     line-height: 1.6;
-    margin: 0 auto; /* Centers the block */
-    text-align: left; /* Aligns text to the left */
+    margin: 0 auto;
+    text-align: left;
     width: 75%;
     color: white;
-    background: rgba(0, 191, 255, 0.1); /* Light blue overlay */
+    background: rgba(0, 191, 255, 0.1);
     padding: 40px;
     border-radius: 15px;
     max-width: 800px;
     box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
 }
 
-
-/* Educational Journey Section */
+/* TIMELINE DESIGN*/
 #timeline {
     width: 80%;
     margin: auto;
     padding: 50px 0;
 }
 
-/* Heading for Education */
 #timeline h2 {
     font-size: 50px;
     text-transform: uppercase;
@@ -225,8 +209,6 @@ body.about-page {
     text-align: center;
     margin-bottom: 30px;
 }
-
-/* Timeline Structure */
 .timeline {
     display: flex;
     flex-direction: column;
@@ -243,8 +225,6 @@ body.about-page {
     background-color: #00b7ff; /* Blue line */
     transform: translateX(-50%);
 }
-
-/* Timeline Item */
 .timeline-item {
     background-color: rgba(0, 183, 255, 0.2); /* Light blue with transparency */
     border: 2px solid #00b7ff; /* Blue border */
@@ -255,12 +235,9 @@ body.about-page {
     text-align: center;
     transition: all 0.3s ease-in-out;
 }
-
 .timeline-item:hover {
     background-color: rgba(0, 183, 255, 0.3); /* Slightly darker on hover */
 }
-
-/* Timeline Date */
 .timeline-date {
     font-size: 18px;
     font-weight: bold;
@@ -276,8 +253,6 @@ body.about-page {
 .timeline-content:hover {
     background: rgba(255, 255, 255, 0.3); /* Slightly more visible on hover */
 }
-
-/* Timeline Content */
 .timeline-content h3 {
     font-size: 30px;
     color: white;
@@ -297,17 +272,13 @@ body.about-page {
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
-
 .click-here:hover {
     color: #ffffff;
 }
-
-/* Hide 'Click here' when expanded */
 .timeline-item[data-expanded="true"] .click-here {
     opacity: 0;
     pointer-events: none;
 }
-
 /* Hidden detail box */
 .timeline-detail {
     display: none;
@@ -319,19 +290,13 @@ body.about-page {
     text-align: left;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-/* Show details when expanded */
 .timeline-item[data-expanded="true"] .timeline-detail {
     display: block;
 }
-
-/* Expanded Timeline Item */
 .timeline-item[data-expanded="true"] {
     background-color: rgba(0, 183, 255, 0.2);
     border-radius: 10px;
 }
-
-/* Adjust Date Styling */
 .timeline-date {
     font-size: 0.9rem;
     font-weight: bold;
@@ -345,30 +310,24 @@ body.about-page {
 }
 
 
-/* Projects styling */
+/* PROJECTS STYLING */
 body.projects-page {
     background-image: url('../img/background1.png');
     background-size: cover;
     background-attachment: fixed;
     font-size: 20px;
 }
-
-/* Project Page Styling */
 .projects-container {
     width: 80%;
     margin: auto;
     text-align: center;
     padding-top: 100px;
 }
-
-/* My Projects Title */
 .projects-container h1 {
     font-size: 50px;
     color: #00b7ff;
     margin-bottom: 20px;
 }
-
-/* Project Description Box */
 .projects-description {
     padding: 20px;
     backdrop-filter: blur(10px);
@@ -382,8 +341,6 @@ body.projects-page {
     margin: 0 auto 50px;
     box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
 }
-
-/* Project List */
 .project-list {
     display: flex;
     flex-direction: column;
@@ -391,8 +348,6 @@ body.projects-page {
     gap: 30px;
     margin-top: 40px;
 }
-
-/* Individual Project Card */
 .project-card {
     display: flex;
     align-items: center;
@@ -406,12 +361,9 @@ body.projects-page {
     backdrop-filter: blur(10px);
     transition: transform 0.3s ease;
 }
-
 .project-card:hover {
     transform: scale(1.02);
 }
-
-/* Project Image */
 .project-card img {
     width: 250px;
     height: 250px;
@@ -419,19 +371,15 @@ body.projects-page {
     border-radius: 10px;
     margin-right: 20px;
 }
-
-/* Project Info */
 .project-info {
     flex: 1;
     text-align: left;
 }
-
 .project-info h2 {
     font-size: 40px;
     color: white;
     margin-bottom: 10px;
 }
-
 .project-info p {
     font-size: 20px;
     color: rgba(255, 255, 255, 0.8);
@@ -449,7 +397,7 @@ body.projects-page {
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    box-shadow: 0px 5px 15px rgba(0, 191, 255, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 191, 255, 0.5);
     width: 180px;
     height: 60px;
     text-align: center;
@@ -458,13 +406,12 @@ body.projects-page {
     transition: all 0.3s ease-in-out;
     white-space: nowrap;
 }
-
-
 .project-btn:hover {
     background: #008fcc;
 }
 
-/* Contact page style */
+
+/* CONTACT PAGE STYLING */
 .contact-title {
     font-size: 50px;
     color: #00bfff;
@@ -482,7 +429,6 @@ body.projects-page {
     margin: 0 auto 50px;
     box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
 }
-
 .contact-info {
     width:80%;
     background: rgba(0, 191, 255, 0.1);
@@ -492,7 +438,6 @@ body.projects-page {
     margin: 0 auto 50px;
     box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
 }
-
 .contact-info p {
     font-size: 20px;
     line-height: 2;
@@ -504,7 +449,6 @@ body.projects-page {
 .contact-info a:hover {
     text-decoration: underline;
 }
-
 .contact-form {
     background: rgba(0, 191, 255, 0.1); /* Light blue overlay */
     padding: 40px;
@@ -513,7 +457,6 @@ body.projects-page {
     margin: 0 auto;
     box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
 }
-
 .contact-form label {
     font-size: 20px;
     display: block;
@@ -521,7 +464,6 @@ body.projects-page {
     margin-bottom: 10px;
     color: white;
 }
-
 .contact-form input,
 .contact-form textarea {
     font-size: 30px;
@@ -532,17 +474,13 @@ body.projects-page {
     background: rgba(255, 255, 255, 0.2);
     color: white;
 }
-
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
     color: rgba(255, 255, 255, 0.6);
 }
-
 .contact-form textarea {
     height: 150px;
 }
-
-
 .contact-form button {
     margin: 20px auto;
     font-size: 24px;
@@ -554,7 +492,7 @@ body.projects-page {
     border-radius: 30px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0px 5px 15px rgba(0, 191, 255, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 191, 255, 0.5);
     display: inline-block;
     width: 180px;
     height: 60px;
@@ -565,14 +503,10 @@ body.projects-page {
     padding: 0 20px;
     white-space: nowrap;
 }
-
-
-/* Ensure the button text stays centered */
 .contact-form button span {
     display: block;
     text-align: center;
 }
-
 
 
 
