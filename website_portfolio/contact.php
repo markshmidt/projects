@@ -1,5 +1,5 @@
 <?php include('includes/header.php'); ?>
-<main class="container py-5">
+<main class="contacts py-5">
     <h1 class="text-center mb-4">Contact Me</h1>
 
     <!-- Contact Information -->
