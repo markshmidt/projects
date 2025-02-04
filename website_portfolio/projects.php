@@ -2,7 +2,8 @@
 <main class="projects-container">
     <h1>My Projects</h1>
     <div class="projects-description">
-        Here are some of the projects I have worked on. I enjoy working on challenges and applying my skills in different areas. You can find all my projects on <a href="https://github.com/markshmidt/projects" style="color:#00b7ff;">GitHub</a>.
+        Here are some of the projects I have worked on during my educational journey. My portfolio contains web applications that were build in a team of three people, for example, Airline Reservation System, and programs developed during the individual studying process like Tic-tac-toe game.
+        You can find all my projects on <a href="https://github.com/markshmidt/projects" style="color:#00b7ff;">GitHub</a>.
     </div>
 
     <div class="project-list">
@@ -21,7 +22,7 @@
             <img src="assets/img/tic-tac-toe.gif" alt="Tic Tac Toe">
             <div class="project-info">
                 <h2>Tic-Tac-Toe Game</h2>
-                <p>A strategic Tic-Tac-Toe game on Tomcat using servlets and JSP as well as working with HTTP requests and responses..</p>
+                <p>A strategic Tic-Tac-Toe game on Tomcat using servlets and JSP as well as working with HTTP requests and responses.</p>
                 <a href="https://github.com/markshmidt/projects/tree/main/JavaProjects/project-servlet" class="project-btn" target="_blank">See Code</a>
             </div>
         </div>

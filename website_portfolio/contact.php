@@ -1,12 +1,17 @@
 <?php include('includes/header.php'); ?>
 <main class="contacts py-5">
-    <h1 class="text-center mb-4">Contact Me</h1>
+    <h1 class="contact-title">Contact Me</h1>
+
+    <!-- Contact Introduction -->
+    <section class="contact-intro">
+        <p>I am always open for new collaborations and opportunities. If you want to stay in touch, you can find me here:</p>
+    </section>
 
     <!-- Contact Information -->
     <section class="contact-info text-center mb-5">
-        <p><strong>Email:</strong> <a href="mailto:masha.shmidt.04@gmail.com">masha.shmidt.04@gmail.com</a></p>
-        <p><strong>GitHub:</strong> <a href="https://github.com/markshmidt" target="_blank">github.com/markshmidt</a></p>
-        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/mariia-shmidt-14a084324/" target="_blank">https://www.linkedin.com/in/mariia-shmidt-14a084324/</a></p>
+        <p>Email: <a href="mailto:masha.shmidt.04@gmail.com">masha.shmidt.04@gmail.com</a></p>
+        <p>GitHub: <a href="https://github.com/markshmidt" target="_blank">github.com/markshmidt</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/mariia-shmidt-14a084324/" target="_blank">linkedin.com/in/mariia-shmidt-14a084324/</a></p>
     </section>
 
     <!-- Contact Form -->
