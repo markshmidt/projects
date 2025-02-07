@@ -15,15 +15,16 @@
                 <h1>About Me</h1>
                 <p>
                     I am an international student in Toronto, Canada, pursuing a diploma in Computer Programming and Analysis at George Brown College with an expected graduation date in April 2026.
-
-                    Since childhood, I have loved playing chess, and my passion for calculating winning combinations for several moves ahead, analyzing the positions of pieces on the board, and coming up with the right strategy for the game led me to the IT field.
+                    <br>
+                    <br>
+                    Since childhood, I have loved playing chess, and my passion for calculating winning combinations for several moves ahead, analyzing the positions of pieces on the board, and coming up with the right strategy for the game led me to the IT field,
                     where I can use my analytical mindset, attention to details, and problem-solving skills in developing algorithms and writing code.
-                </p>
-                <p>
-                    Through my academic projects, I honed my skills in building web applications using Python, Java, and C#, working with databases (MySQL, SQLite, Oracle), and working with both backend (Javascript, Node.js, PHP) and frontend (HTML, CSS, Bootstrap, React, jQuery) technologies.
-                </p>
-                <p> Currently I am looking for an internship or an entry-level job where I can get hand-on useful experience and implement skills I have in a fast-paced environment. I aspire to contribute as a software developer, collaborating with dynamic teams to build impactful and user-friendly applications. </p>
-                <p>
+                    <br>
+                    <br>
+                    Through my academic projects, I honed my skills in building web applications using Python, Java, and C#, working with databases (MySQL, SQLite, Oracle), and exploring both backend (Javascript, Node.js, PHP) and frontend (HTML, CSS, Bootstrap, React, jQuery) technologies.
+                    Currently I am looking for an internship or an entry-level job where I can get hands-on useful experience and implement skills I have in a fast-paced environment. I aspire to contribute as a software developer, collaborating with dynamic teams to build impactful and user-friendly applications.
+                    <br>
+                    <br>
                     When I’m not at my computer I like to spend my time reading, keeping fit by dancing, discussing cinematography with friends and crocheting :)
                 </p>
             </section>
@@ -42,10 +43,12 @@
                                 <p>JavaRush</p>
                                 <h6 class="click-here">Click here to see more information</h6>
                                 <div class="timeline-detail">
-                                    <p>Web application development on Java under mentorship of a senior developer.</p>
-                                    <p>Exploring the main concepts and development tools, as well as design patterns and development methodologies with hands-on practice.</p>
-                                    <p>Developing projects with build tools (Maven), testing (JUnit, Mockito), and logging, as well as servlet containers (Tomcat), and MVC pattern.</p>
-                                    <p>Aiming to work on projects with Spring, Hibernate, SQL, Docker, etc., and receiving certification of completion the internship</p>
+                                    <ul>
+                                        <li>Web application development on Java under mentorship of a senior developer.</li>
+                                        <li>Exploring the main concepts and development tools, as well as design patterns and development methodologies with hands-on practice.</li>
+                                        <li>Developing projects with build tools (Maven), testing (JUnit, Mockito), and logging, as well as servlet containers (Tomcat), and MVC pattern.</li>
+                                        <li>Aiming to work on projects with Spring, Hibernate, SQL, Docker, etc., and receiving certification of completion the internship.</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -58,10 +61,12 @@
                                 <p>Computer Programming and Analysis program</p>
                                 <h6 class="click-here">Click here to see more information</h6>
                                 <div class="timeline-detail">
-                                    <p>Fullstack, software and mobile application development with project-based and experiential learning</p>
-                                    <p>GPA: 3.8</p>
-                                    <p>Dean's List of Honor in Fall 2023 and Winter 2024 semesters.</p>
-                                    <p> Aiming to receiving Ontario College Advanced Diploma </p>
+                                    <ul>
+                                        <li>Fullstack, software and mobile application development with project-based and experiential learning.</li>
+                                        <li>GPA: 3.8</li>
+                                        <li>Dean's List of Honor in Fall 2023 and Winter 2024 semesters.</li>
+                                        <li>Aiming to receive Ontario College Advanced Diploma.</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -74,10 +79,12 @@
                                 <p>High school</p>
                                 <h6 class="click-here">Click here to see more information</h6>
                                 <div class="timeline-detail">
-                                    <p>Completed 12 grade with subjects as Calculus & Vectors, Advanced Functions, Python development and etc.</p>
-                                    <p>Volunteered at a Food Bank and the Coldest Night of the Year event.</p>
-                                    <p>Participated in the creation of a podcast for the college Youtube channel and helped new students at the Open Doors Day.</p>
-                                    <p>Winner of the college chess tournament :)</p>
+                                    <ul>
+                                        <li>Completed 12th grade with subjects like Calculus & Vectors, Advanced Functions, Python development, etc.</li>
+                                        <li>Volunteered at a Food Bank and the Coldest Night of the Year event.</li>
+                                        <li>Participated in the creation of a podcast for the college YouTube channel and helped new students at the Open Doors Day.</li>
+                                        <li>Winner of the college chess tournament :)</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -90,9 +97,11 @@
                                 <p>Business Management program</p>
                                 <h6 class="click-here">Click here to see more information</h6>
                                 <div class="timeline-detail">
-                                    <p>Explored business communication and organization concepts.</p>
-                                    <p>Learned accounting basics, financial literacy, corporate culture.</p>
-                                    <p>Received diploma of completion with distinction. </p>
+                                    <ul>
+                                        <li>Explored business communication and organization concepts.</li>
+                                        <li>Learned accounting basics, financial literacy, corporate culture.</li>
+                                        <li>Received diploma of completion with distinction.</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

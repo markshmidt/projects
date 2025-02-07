@@ -9,7 +9,7 @@ body {
     margin: 0;
     padding: 0;
     color: white;
-    background-image: url('../img/background1.png');
+    background-image: url('../img/background_2.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -136,7 +136,7 @@ nav ul {
 /* BUTTONS */
 .buttons {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     margin-top: 70px;
 }
 
@@ -164,11 +164,6 @@ nav ul {
 
 
 /* ABOUT ME PAGE*/
-body.about-page {
-    background-image: url('../img/background1.png');
-    background-size: cover;
-    background-attachment: fixed;
-}
 #about-me {
     width: 75%;
     margin: auto;
@@ -178,13 +173,14 @@ body.about-page {
     text-align: center;
 }
 #about-me h1 {
-    margin-top: 100px;
+    margin-top: 60px;
     font-size: 50px;
     color: #00b7ff;
+    text-transform: uppercase;
     margin-bottom: 20px;
 }
 #about-me p {
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.6;
     margin: 0 auto;
     text-align: left;
@@ -225,21 +221,24 @@ body.about-page {
     left: 50%;
     width: 4px;
     height: 100%;
-    background-color: #00b7ff; /* Blue line */
+    background-color: #00b7ff;
     transform: translateX(-50%);
+    z-index: 0
 }
 .timeline-item {
-    background-color: rgba(0, 183, 255, 0.2); /* Light blue with transparency */
-    border: 2px solid #00b7ff; /* Blue border */
+    background-color: rgba(0, 183, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid #00b7ff;
     border-radius: 15px;
     padding: 20px;
     width: 60%;
     margin: 20px auto;
     text-align: center;
     transition: all 0.3s ease-in-out;
+    z-index: 1;
 }
 .timeline-item:hover {
-    background-color: rgba(0, 183, 255, 0.3); /* Slightly darker on hover */
+    background-color: rgba(0, 183, 255, 0.3);
 }
 .timeline-date {
     font-size: 18px;
@@ -247,36 +246,46 @@ body.about-page {
     color: #fff;
 }
 .timeline-content {
-    background: rgba(255, 255, 255, 0.2); /* White with 20% opacity */
-    backdrop-filter: blur(10px); /* Blurred background effect */
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
     border-radius: 15px;
     padding: 20px;
     transition: all 0.3s ease-in-out;
 }
 .timeline-content:hover {
-    background: rgba(255, 255, 255, 0.3); /* Slightly more visible on hover */
+    background: rgba(255, 255, 255, 0.3);
 }
 .timeline-content h3 {
     font-size: 30px;
     color: white;
     margin-bottom: 5px;
 }
-
 .timeline-content p {
+    margin-left: 10px;
+    font-size: 20px;
+    color: white;
+}
+
+.timeline-content li {
+    margin-left: 10px;
     font-size: 20px;
     color: white;
 }
 
 /* Click to Expand */
 .click-here {
-    font-size: 18px;
-    color: #00b7ff;
-    font-weight: bold;
+    margin-top: 10px;
+    font-weight: lighter;
+    color: #d6d6d6;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
 .click-here:hover {
-    color: #ffffff;
+    color: #00b7ff;
+}
+.timeline-content h6{
+
 }
 .timeline-item[data-expanded="true"] .click-here {
     opacity: 0;
@@ -306,18 +315,10 @@ body.about-page {
     text-transform: uppercase;
     margin-bottom: 5px;
 }
-.timeline-content h6{
-    font-weight: lighter;
-    color: #d6d6d6;
-    font-size: 0.9rem;
-}
 
 
 /* PROJECTS STYLING */
 body.projects-page {
-    background-image: url('../img/background1.png');
-    background-size: cover;
-    background-attachment: fixed;
     font-size: 20px;
 }
 .projects-container {
@@ -659,6 +660,34 @@ body.projects-page {
         }
         .hero p {
             font-size: 22px;
+        }
+        .timeline-detail li {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .timeline-item {
+            width: 90%;
+            text-align: center;
+        }
+
+        h1, h2 {
+            font-size: 50px;
+        }
+
+        .timeline::before {
+            left: 5%;
+        }
+
+        .timeline-date {
+            position: relative;
+            left: 0;
+            display: block;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .footer p {
+            font-size: 14px;
         }
     }
 
