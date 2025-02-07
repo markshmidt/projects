@@ -14,7 +14,7 @@
             <img src="assets/img/profile.png" alt="Mari Shmidt">
         </div>
         <div class="info">
-            <h2>Hi, I'm</h2>
+            <p>Hi, I'm</p>
             <h1>Mari Shmidt,</h1>
             <p>
                 an international student in Toronto and a junior software developer.
