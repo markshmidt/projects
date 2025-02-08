@@ -31,12 +31,14 @@
 
             <!-- Timeline Section -->
             <section id="timeline">
+
                 <h2 class="text-center mb-5">My Educational Journey</h2>
 
                     <div class="timeline">
 
                         <!-- Java Developer Intern -->
                         <div class="timeline-item" data-expanded="false">
+                            <div class="blur-background"></div>
                             <span class="timeline-date">Oct 2024 - Apr 2025</span>
                             <div class="timeline-content">
                                 <h3>Java Developer Intern</h3>

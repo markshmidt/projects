@@ -15,7 +15,7 @@
         </div>
         <div class="info">
             <p>Hi, I'm</p>
-            <h1>Mari Shmidt,</h1>
+            <h1 >Mari Shmidt,</h1>
             <p>
                 an international student in Toronto and a junior software developer.
                 <br><br>

@@ -13,7 +13,7 @@
 
     <!-- Contact Introduction -->
     <section class="contact-intro">
-        <p>I am always open for new collaborations and opportunities. If you want to stay in touch, you can find me here:</p>
+        <p>I am always open for new collaborations and opportunities! If you want to stay in touch, you can find me here:</p>
     </section>
 
     <!-- Contact Information -->

@@ -32,7 +32,7 @@
             <div class="project-info">
                 <h2>Tic-Tac-Toe Game</h2>
                 <p>A strategic Tic-Tac-Toe game on Tomcat using servlets and JSP as well as working with HTTP requests and responses.</p>
-                <a href="https://github.com/markshmidt/projects/tree/main/JavaProjects/project-servlet" class="project-btn" target="_blank">See Code</a>
+                <a href="https://github.com/markshmidt/projects/tree/main/JavaProjects/project-servlet" class="project-btn" target="_blank">See code</a>
             </div>
         </div>
 
@@ -42,7 +42,7 @@
             <div class="project-info">
                 <h2>HRM & Payroll System</h2>
                 <p>Comprehensive JavaFX-based HRM and Payroll System with employee record management and generating reports.</p>
-                <a href="https://github.com/markshmidt/projects/tree/main/JavaProjects/project-management" class="project-btn" target="_blank">See Code</a>
+                <a href="https://github.com/markshmidt/projects/tree/main/JavaProjects/project-management" class="project-btn" target="_blank">See code</a>
             </div>
         </div>
 
@@ -52,7 +52,7 @@
             <div class="project-info">
                 <h2>Airline Reservation System</h2>
                 <p>An OOP-based Airline Reservation System with database storage and exception handling mechanisms.</p>
-                <a href="https://github.com/markshmidt/projects/tree/main/JavaProjects/project-maven" class="project-btn" target="_blank">See Code</a>
+                <a href="https://github.com/markshmidt/projects/tree/main/JavaProjects/project-maven" class="project-btn" target="_blank">See code</a>
             </div>
         </div>
 
@@ -62,7 +62,7 @@
             <div class="project-info">
                 <h2>RPG Admin Panel</h2>
                 <p>A CRUD-based web app for managing online game player accounts using JS and jQuery.</p>
-                <a href="https://github.com/markshmidt/projects/tree/main/JavaProjects/project-front" class="project-btn" target="_blank">See Code</a>
+                <a href="https://github.com/markshmidt/projects/tree/main/JavaProjects/project-front" class="project-btn" target="_blank">See code</a>
             </div>
         </div>
 
@@ -72,9 +72,11 @@
             <div class="project-info">
                 <h2>Voting Application</h2>
                 <p>Initial voting application structured with OOP principles using PHP with MySQL database</p>
-                <a href="https://github.com/markshmidt/projects/tree/main/JavaProjects/project-management" class="project-btn" target="_blank">See Code</a>
+                <a href="https://github.com/markshmidt/projects/tree/main/JavaProjects/project-management" class="project-btn" target="_blank">See code</a>
             </div>
         </div>
     </div>
+    <br>
+    <br>
 </main>
 <?php include('includes/footer.php'); ?>
