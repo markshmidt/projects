@@ -6,7 +6,7 @@ pygame.init()
 # ----- Configuration Constants -----
 BOARD_POS = (10, 10)          # Top-left corner where the board is drawn
 TILESIZE = 90                 # Size of each square
-MARGIN = 15                   # Margin used for positioning pieces within each square
+MARGIN = 15                   # Margin used for positioning pieces inside each square
 
 BOARD_WIDTH, BOARD_HEIGHT = 8, 8
 
@@ -23,8 +23,10 @@ COLORS = [(128, 0, 0),       # brown
 # Corresponding color names (order must match COLORS)
 COLOR_NAMES = ["brown", "turquoise", "blue", "yellow", "pink", "green", "red", "orange"]
 
-# ----- Initialize the Screen -----
+# ----- Initialize the Screen and Font -----
 screen = pygame.display.set_mode((800, 800))
+pygame.display.set_caption("Kamisado")
+font = pygame.font.SysFont(None, 72)  # For game-over text
 
 def create_board_surf():
     """Creates and returns a surface with the drawn board (checkerboard style)."""
@@ -52,7 +54,7 @@ class Piece(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.col = col
         self.row = row
-        self.direction = direction  # "up" means decreasing row, "down" means increasing row.
+        self.direction = direction  # "up" means decreasing row; "down" means increasing row.
         self.team = team
 
         # Extract the intrinsic color from the filename.
@@ -60,7 +62,7 @@ class Piece(pygame.sprite.Sprite):
         filename_no_ext = image_filename.split('.')[0]
         self.intrinsic_color = filename_no_ext.split('_')[0].lower()
 
-        self.snap()  # Position the piece correctly.
+        self.snap()  # Position the piece correctly on the board.
 
     def snap(self):
         """Snap the piece to its board cell using BOARD_POS and MARGIN."""
@@ -84,8 +86,8 @@ def get_valid_moves(piece, pieces):
     """
     Return a list of valid board positions (col, row) for the given piece.
     Allowed moves: forward vertical or diagonal (in the direction allowed).
-    For "up" pieces, the allowed vectors are (0,-1), (-1,-1), (1,-1);
-    For "down" pieces, they are (0,1), (-1,1), (1,1).
+      - For "up" pieces, allowed vectors are (0,-1), (-1,-1), (1,-1)
+      - For "down" pieces, allowed vectors are (0,1), (-1,1), (1,1)
     The piece may move as far as unobstructed.
     """
     valid_moves = []
@@ -100,23 +102,21 @@ def get_valid_moves(piece, pieces):
             new_row = piece.row + dy * step
             # Check board boundaries.
             if 0 <= new_col < BOARD_WIDTH and 0 <= new_row < BOARD_HEIGHT:
-                # The square is valid if it is empty.
                 if get_piece_at(new_col, new_row, pieces) is None:
                     valid_moves.append((new_col, new_row))
                     step += 1
                 else:
-                    # Blocked by another piece.
                     break
             else:
                 break
     return valid_moves
 
-# ----- Create the Pieces -----
-# Image lists (the file names indicate the piece color and team).
+# ----- Image Lists and Piece Creation -----
+# The image lists now contain file names that indicate the piece's intrinsic color.
 # Top row pieces (row 0) should be black; bottom row pieces (row 7) should be white.
-# Note: The naming here is swapped compared to the team:
-#   - Top row uses images from white_images (which have names like "brown_black.png")
-#   - Bottom row uses images from black_images (which have names like "orange_white.png")
+# Note: The naming is swapped:
+#   - Top row uses images from white_images (e.g. "brown_black.png")
+#   - Bottom row uses images from black_images (e.g. "orange_white.png")
 
 white_images = ["brown_black.png", "turquoise_black.png", "blue_black.png", "yellow_black.png",
                 "pink_black.png", "green_black.png", "red_black.png", "orange_black.png"]
@@ -124,27 +124,32 @@ white_images = ["brown_black.png", "turquoise_black.png", "blue_black.png", "yel
 black_images = ["orange_white.png", "brown_white.png", "turquoise_white.png", "blue_white.png",
                 "yellow_white.png", "pink_white.png", "green_white.png", "red_white.png"]
 
-# We use sprite groups for drawing and an overall list for collision checking.
-black_pieces = pygame.sprite.Group()  # Top row pieces (team "black")
-white_pieces = pygame.sprite.Group()  # Bottom row pieces (team "white")
-all_pieces = []
+def reset_game():
+    """Reinitialize all pieces and game state."""
+    global black_pieces, white_pieces, all_pieces, turn, forced_color
+    black_pieces = pygame.sprite.Group()  # Top row pieces (team "black")
+    white_pieces = pygame.sprite.Group()  # Bottom row pieces (team "white")
+    all_pieces = []
 
-# Create top row pieces: row 0, team "black", moving "down"
-for col in range(BOARD_WIDTH):
-    p = Piece(col, 0, white_images[col], "down", "black")
-    black_pieces.add(p)
-    all_pieces.append(p)
+    # Create top row pieces: row 0, team "black", moving "down"
+    for col in range(BOARD_WIDTH):
+        p = Piece(col, 0, white_images[col], "down", "black")
+        black_pieces.add(p)
+        all_pieces.append(p)
 
-# Create bottom row pieces: row 7, team "white", moving "up"
-for col in range(BOARD_WIDTH):
-    p = Piece(col, 7, black_images[col], "up", "white")
-    white_pieces.add(p)
-    all_pieces.append(p)
+    # Create bottom row pieces: row 7, team "white", moving "up"
+    for col in range(BOARD_WIDTH):
+        p = Piece(col, 7, black_images[col], "up", "white")
+        white_pieces.add(p)
+        all_pieces.append(p)
 
-# ----- Turn Management and Forced–Move Logic -----
-turn = "white"         # White starts (i.e. bottom row moves first)
-forced_color = None    # Initially, no forced color
+    turn = "white"         # White starts (i.e. bottom row moves first)
+    forced_color = None
 
+# Initialize game state for the first time.
+reset_game()
+
+# ----- Turn Management and Dragging -----
 selected_piece = None
 valid_moves = []       # Valid moves for the currently selected piece
 drag_offset = (0, 0)   # Offset for smooth dragging
@@ -167,7 +172,7 @@ while running:
                 if piece.rect.collidepoint(pos):
                     # Allow selection only if:
                     # 1. The piece belongs to the current turn.
-                    # 2. If a forced color is active, the piece's intrinsic color must match.
+                    # 2. If forced_color is active, the piece's intrinsic color must match.
                     if piece.team == turn and (forced_color is None or piece.intrinsic_color == forced_color):
                         selected_piece = piece
                         valid_moves = get_valid_moves(piece, all_pieces)
@@ -195,6 +200,19 @@ while running:
                     forced_color = tile_color_name  # Force opponent to move piece of this color.
                     # Switch turn.
                     turn = "black" if turn == "white" else "white"
+
+                    # --- Check for Game Over Condition ---
+                    # For white pieces (team "white" moving up): reaching row 0 wins.
+                    # For black pieces (team "black" moving down): reaching row BOARD_HEIGHT-1 wins.
+                    if (selected_piece.team == "white" and selected_piece.row == 0) or \
+                       (selected_piece.team == "black" and selected_piece.row == BOARD_HEIGHT - 1):
+                        # Display "Game Over" message.
+                        over_text = font.render("Game Over", True, (255, 255, 255))
+                        text_rect = over_text.get_rect(center=(400, 400))
+                        screen.blit(over_text, text_rect)
+                        pygame.display.update()
+                        pygame.time.delay(1000)  # Pause for 2 seconds.
+                        reset_game()  # Restart the game.
                 else:
                     # Invalid move: snap back.
                     selected_piece.snap()
