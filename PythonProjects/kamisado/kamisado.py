@@ -1,158 +1,225 @@
 import pygame
+import sys
 
 pygame.init()
 
-GREEN = (0, 255, 0)
-BROWN = (128, 0, 0)
-TURQUIOSE = (48, 213, 200)
-BLUE = (0, 0, 255)
-YELLOW = (255, 255, 0)
-PINK = (255, 105, 180)
-RED = (255, 0, 0)
-ORANGE = (255, 165, 0)
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
+# ----- Configuration Constants -----
+BOARD_POS = (10, 10)          # Top-left corner where the board is drawn
+TILESIZE = 90                 # Size of each square
+MARGIN = 15                   # Margin used for positioning pieces within each square
 
-TILESIZE = 90
-BOARD_POS = (10, 10)
+BOARD_WIDTH, BOARD_HEIGHT = 8, 8
 
+# Colors used for board squares (RGB tuples)
+COLORS = [(128, 0, 0),       # brown
+          (48, 213, 200),    # turquoise
+          (0, 0, 255),       # blue
+          (255, 255, 0),     # yellow
+          (255, 105, 180),   # pink
+          (0, 255, 0),       # green
+          (255, 0, 0),       # red
+          (255, 165, 0)]     # orange
+
+# Corresponding color names (order must match COLORS)
+COLOR_NAMES = ["brown", "turquoise", "blue", "yellow", "pink", "green", "red", "orange"]
+
+# ----- Initialize the Screen -----
 screen = pygame.display.set_mode((800, 800))
 
-
 def create_board_surf():
-    board_surf = pygame.Surface((730, 730))
-    rect = pygame.Rect(0, 0, TILESIZE, TILESIZE)
-    pygame.draw.rect(board_surf, BROWN, rect)
-    pygame.draw.rect(board_surf, TURQUIOSE, (90, 0, 90, 90))
-    pygame.draw.rect(board_surf, BLUE, (180, 0, 90, 90))
-    pygame.draw.rect(board_surf, YELLOW, (270, 0, 90, 90))
-    pygame.draw.rect(board_surf, PINK, (360, 0, 90, 90))
-    pygame.draw.rect(board_surf, GREEN, (450, 0, 90, 90))
-    pygame.draw.rect(board_surf, RED, (540, 0, 90, 90))
-    pygame.draw.rect(board_surf, ORANGE, (630, 0, 90, 90))
-    pygame.draw.rect(board_surf, GREEN, (0, 90, 90, 90))
-    pygame.draw.rect(board_surf, BROWN, (90, 90, 90, 90))
-    pygame.draw.rect(board_surf, YELLOW, (180, 90, 90, 90))
-    pygame.draw.rect(board_surf, RED, (270, 90, 90, 90))
-    pygame.draw.rect(board_surf, TURQUIOSE, (360, 90, 90, 90))
-    pygame.draw.rect(board_surf, PINK, (450, 90, 90, 90))
-    pygame.draw.rect(board_surf, ORANGE, (540, 90, 90, 90))
-    pygame.draw.rect(board_surf, BLUE, (630, 90, 90, 90))
-
-    pygame.draw.rect(board_surf, RED, (0, 180, 90, 90))
-    pygame.draw.rect(board_surf, YELLOW, (90, 180, 90, 90))
-    pygame.draw.rect(board_surf, BROWN, (180, 180, 90, 90))
-    pygame.draw.rect(board_surf, GREEN, (270, 180, 90, 90))
-    pygame.draw.rect(board_surf, BLUE, (360, 180, 90, 90))
-    pygame.draw.rect(board_surf, ORANGE, (450, 180, 90, 90))
-    pygame.draw.rect(board_surf, PINK, (540, 180, 90, 90))
-    pygame.draw.rect(board_surf, TURQUIOSE, (630, 180, 90, 90))
-
-    pygame.draw.rect(board_surf, YELLOW, (0, 270, 90, 90))
-    pygame.draw.rect(board_surf, BLUE, (90, 270, 90, 90))
-    pygame.draw.rect(board_surf, TURQUIOSE, (180, 270, 90, 90))
-    pygame.draw.rect(board_surf, BROWN, (270, 270, 90, 90))
-    pygame.draw.rect(board_surf, ORANGE, (360, 270, 90, 90))
-    pygame.draw.rect(board_surf, RED, (450, 270, 90, 90))
-    pygame.draw.rect(board_surf, GREEN, (540, 270, 90, 90))
-    pygame.draw.rect(board_surf, PINK, (630, 270, 90, 90))
-
-    pygame.draw.rect(board_surf, PINK, (0, 360, 90, 90))
-    pygame.draw.rect(board_surf, GREEN, (90, 360, 90, 90))
-    pygame.draw.rect(board_surf, RED, (180, 360, 90, 90))
-    pygame.draw.rect(board_surf, ORANGE, (270, 360, 90, 90))
-    pygame.draw.rect(board_surf, BROWN, (360, 360, 90, 90))
-    pygame.draw.rect(board_surf, TURQUIOSE, (450, 360, 90, 90))
-    pygame.draw.rect(board_surf, BLUE, (540, 360, 90, 90))
-    pygame.draw.rect(board_surf, YELLOW, (630, 360, 90, 90))
-
-    pygame.draw.rect(board_surf, TURQUIOSE, (0, 450, 90, 90))
-    pygame.draw.rect(board_surf, PINK, (90, 450, 90, 90))
-    pygame.draw.rect(board_surf, ORANGE, (180, 450, 90, 90))
-    pygame.draw.rect(board_surf, BLUE, (270, 450, 90, 90))
-    pygame.draw.rect(board_surf, GREEN, (360, 450, 90, 90))
-    pygame.draw.rect(board_surf, BROWN, (450, 450, 90, 90))
-    pygame.draw.rect(board_surf, YELLOW, (540, 450, 90, 90))
-    pygame.draw.rect(board_surf, RED, (630, 450, 90, 90))
-
-    pygame.draw.rect(board_surf, BLUE, (0, 540, 90, 90))
-    pygame.draw.rect(board_surf, ORANGE, (90, 540, 90, 90))
-    pygame.draw.rect(board_surf, PINK, (180, 540, 90, 90))
-    pygame.draw.rect(board_surf, TURQUIOSE, (270, 540, 90, 90))
-    pygame.draw.rect(board_surf, RED, (360, 540, 90, 90))
-    pygame.draw.rect(board_surf, YELLOW, (450, 540, 90, 90))
-    pygame.draw.rect(board_surf, BROWN, (540, 540, 90, 90))
-    pygame.draw.rect(board_surf, GREEN, (630, 540, 90, 90))
-
-    pygame.draw.rect(board_surf, ORANGE, (0, 630, 90, 90))
-    pygame.draw.rect(board_surf, RED, (90, 630, 90, 90))
-    pygame.draw.rect(board_surf, GREEN, (180, 630, 90, 90))
-    pygame.draw.rect(board_surf, PINK, (270, 630, 90, 90))
-    pygame.draw.rect(board_surf, YELLOW, (360, 630, 90, 90))
-    pygame.draw.rect(board_surf, BLUE, (450, 630, 90, 90))
-    pygame.draw.rect(board_surf, TURQUIOSE, (540, 630, 90, 90))
-    pygame.draw.rect(board_surf, BROWN, (630, 630, 90, 90))
+    """Creates and returns a surface with the drawn board (checkerboard style)."""
+    board_surf = pygame.Surface((BOARD_WIDTH * TILESIZE, BOARD_HEIGHT * TILESIZE))
+    for row in range(BOARD_HEIGHT):
+        for col in range(BOARD_WIDTH):
+            color = COLORS[(row + col) % len(COLORS)]
+            pygame.draw.rect(board_surf, color,
+                             (col * TILESIZE, row * TILESIZE, TILESIZE, TILESIZE))
     return board_surf
 
+# ----- Piece Class -----
+class Piece(pygame.sprite.Sprite):
+    def __init__(self, col, row, image_filename, direction, team):
+        """
+        col, row: initial board coordinates (0-indexed).
+        image_filename: the filename of the piece image.
+        direction: "up" or "down" (allowed forward direction).
+        team: "white" or "black" (for turn management).
+        """
+        super().__init__()
+        self.image = pygame.image.load(image_filename).convert_alpha()
+        # Scale the image to fit inside the square (with some margin).
+        self.image = pygame.transform.scale(self.image, (TILESIZE - 20, TILESIZE - 20))
+        self.rect = self.image.get_rect()
+        self.col = col
+        self.row = row
+        self.direction = direction  # "up" means decreasing row, "down" means increasing row.
+        self.team = team
 
-class Item(pygame.sprite.Sprite):
+        # Extract the intrinsic color from the filename.
+        # For example, "orange_white.png" -> intrinsic color is "orange"
+        filename_no_ext = image_filename.split('.')[0]
+        self.intrinsic_color = filename_no_ext.split('_')[0].lower()
 
-    def __init__(self, x, y, filename):
-        pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(filename).convert_alpha()
-        self.size = self.image.get_size()
-        self.image = pygame.transform.scale(self.image, (int(self.size[0] // 50), int(self.size[1] // 50)))
-        self.x = x
-        self.y = y
-        self.rect = self.image.get_rect(x=x, y=y)
+        self.snap()  # Position the piece correctly.
 
-    def update(self, rel):
-        self.rect.move_ip(rel)
+    def snap(self):
+        """Snap the piece to its board cell using BOARD_POS and MARGIN."""
+        self.rect.topleft = (BOARD_POS[0] + self.col * TILESIZE + MARGIN,
+                               BOARD_POS[1] + self.row * TILESIZE + MARGIN)
 
+    def update_position(self, new_col, new_row):
+        """Update board coordinates and snap to the new cell."""
+        self.col = new_col
+        self.row = new_row
+        self.snap()
 
-items = pygame.sprite.Group(
-    Item(15, 15, "маша_круги-10.png"),
-    Item(105, 15, "маша_круги-11.png"),
-    Item(195, 15, "маша_круги-12.png"),
-    Item(285, 15, "маша_круги-16.png"),
-    Item(375, 15, "маша_круги-15.png"),
-    Item(465, 15, "маша_круги-09.png"),
-    Item(555, 15, "маша_круги-14.png"),
-    Item(645, 15, "маша_круги-13.png"),
+def get_piece_at(col, row, pieces):
+    """Return the piece at board position (col, row) from 'pieces', or None if empty."""
+    for p in pieces:
+        if p.col == col and p.row == row:
+            return p
+    return None
 
-    Item(15, 645, "маша_круги-05.png"),
-    Item(105, 645, "маша_круги-06.png"),
-    Item(195, 645, "маша_круги-01.png"),
-    Item(285, 645, "маша_круги-07.png"),
-    Item(375, 645, "маша_круги-08.png"),
-    Item(465, 645, "маша_круги-04.png"),
-    Item(555, 645, "маша_круги-03.png"),
-    Item(645, 645, "маша_круги-02.png")
-)
+def get_valid_moves(piece, pieces):
+    """
+    Return a list of valid board positions (col, row) for the given piece.
+    Allowed moves: forward vertical or diagonal (in the direction allowed).
+    For "up" pieces, the allowed vectors are (0,-1), (-1,-1), (1,-1);
+    For "down" pieces, they are (0,1), (-1,1), (1,1).
+    The piece may move as far as unobstructed.
+    """
+    valid_moves = []
+    if piece.direction == 'up':
+        directions = [(0, -1), (-1, -1), (1, -1)]
+    else:  # piece.direction == 'down'
+        directions = [(0, 1), (-1, 1), (1, 1)]
+    for dx, dy in directions:
+        step = 1
+        while True:
+            new_col = piece.col + dx * step
+            new_row = piece.row + dy * step
+            # Check board boundaries.
+            if 0 <= new_col < BOARD_WIDTH and 0 <= new_row < BOARD_HEIGHT:
+                # The square is valid if it is empty.
+                if get_piece_at(new_col, new_row, pieces) is None:
+                    valid_moves.append((new_col, new_row))
+                    step += 1
+                else:
+                    # Blocked by another piece.
+                    break
+            else:
+                break
+    return valid_moves
 
-dragged = pygame.sprite.Group()
+# ----- Create the Pieces -----
+# Image lists (the file names indicate the piece color and team).
+# Top row pieces (row 0) should be black; bottom row pieces (row 7) should be white.
+# Note: The naming here is swapped compared to the team:
+#   - Top row uses images from white_images (which have names like "brown_black.png")
+#   - Bottom row uses images from black_images (which have names like "orange_white.png")
+
+white_images = ["brown_black.png", "turquoise_black.png", "blue_black.png", "yellow_black.png",
+                "pink_black.png", "green_black.png", "red_black.png", "orange_black.png"]
+
+black_images = ["orange_white.png", "brown_white.png", "turquoise_white.png", "blue_white.png",
+                "yellow_white.png", "pink_white.png", "green_white.png", "red_white.png"]
+
+# We use sprite groups for drawing and an overall list for collision checking.
+black_pieces = pygame.sprite.Group()  # Top row pieces (team "black")
+white_pieces = pygame.sprite.Group()  # Bottom row pieces (team "white")
+all_pieces = []
+
+# Create top row pieces: row 0, team "black", moving "down"
+for col in range(BOARD_WIDTH):
+    p = Piece(col, 0, white_images[col], "down", "black")
+    black_pieces.add(p)
+    all_pieces.append(p)
+
+# Create bottom row pieces: row 7, team "white", moving "up"
+for col in range(BOARD_WIDTH):
+    p = Piece(col, 7, black_images[col], "up", "white")
+    white_pieces.add(p)
+    all_pieces.append(p)
+
+# ----- Turn Management and Forced–Move Logic -----
+turn = "white"         # White starts (i.e. bottom row moves first)
+forced_color = None    # Initially, no forced color
+
+selected_piece = None
+valid_moves = []       # Valid moves for the currently selected piece
+drag_offset = (0, 0)   # Offset for smooth dragging
 
 clock = pygame.time.Clock()
 
-while True:
+# ----- Main Game Loop -----
+running = True
+while running:
     board_surf = create_board_surf()
-    clock = pygame.time.Clock()
+
     for event in pygame.event.get():
-
         if event.type == pygame.QUIT:
-            exit()
+            running = False
+
+        # --- Mouse Button Down: Select a Piece ---
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            dragged.add(x for x in items if x.rect.collidepoint(event.pos))
-        elif event.type == pygame.MOUSEBUTTONUP:
-            dragged.empty()
+            pos = event.pos
+            for piece in all_pieces:
+                if piece.rect.collidepoint(pos):
+                    # Allow selection only if:
+                    # 1. The piece belongs to the current turn.
+                    # 2. If a forced color is active, the piece's intrinsic color must match.
+                    if piece.team == turn and (forced_color is None or piece.intrinsic_color == forced_color):
+                        selected_piece = piece
+                        valid_moves = get_valid_moves(piece, all_pieces)
+                        drag_offset = (piece.rect.x - pos[0], piece.rect.y - pos[1])
+                    break
+
+        # --- Mouse Motion: Drag the Selected Piece ---
         elif event.type == pygame.MOUSEMOTION:
-            dragged.update(event.rel)
+            if selected_piece:
+                pos = event.pos
+                selected_piece.rect.x = pos[0] + drag_offset[0]
+                selected_piece.rect.y = pos[1] + drag_offset[1]
 
-    screen.fill(BLACK)
+        # --- Mouse Button Up: Drop and Validate the Move ---
+        elif event.type == pygame.MOUSEBUTTONUP:
+            if selected_piece:
+                # Compute board cell over which the piece was dropped.
+                new_col = round((selected_piece.rect.x - BOARD_POS[0]) / TILESIZE)
+                new_row = round((selected_piece.rect.y - BOARD_POS[1]) / TILESIZE)
+                if (new_col, new_row) in valid_moves:
+                    selected_piece.update_position(new_col, new_row)
+                    # Determine the color of the destination tile.
+                    tile_index = (new_row + new_col) % len(COLORS)
+                    tile_color_name = COLOR_NAMES[tile_index]
+                    forced_color = tile_color_name  # Force opponent to move piece of this color.
+                    # Switch turn.
+                    turn = "black" if turn == "white" else "white"
+                else:
+                    # Invalid move: snap back.
+                    selected_piece.snap()
+                selected_piece = None
+                valid_moves = []
+
+    # ----- Drawing -----
+    screen.fill((0, 0, 0))
     screen.blit(board_surf, BOARD_POS)
-    items.draw(screen)
-    pygame.display.update()
 
+    # Draw valid moves as centered dots.
+    if selected_piece:
+        for (col, row) in valid_moves:
+            cx = BOARD_POS[0] + col * TILESIZE + TILESIZE // 2
+            cy = BOARD_POS[1] + row * TILESIZE + TILESIZE // 2
+            # Dot color: red for white's turn, blue for black's turn.
+            dot_color = (255, 0, 0) if turn == "white" else (0, 0, 255)
+            pygame.draw.circle(screen, dot_color, (cx, cy), 8)
+
+    # Draw the pieces.
+    black_pieces.draw(screen)
+    white_pieces.draw(screen)
+
+    pygame.display.update()
     clock.tick(60)
 
 pygame.quit()
+sys.exit()
