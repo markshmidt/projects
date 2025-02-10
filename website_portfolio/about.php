@@ -38,7 +38,6 @@
 
                         <!-- Java Developer Intern -->
                         <div class="timeline-item" data-expanded="false">
-                            <div class="blur-background"></div>
                             <span class="timeline-date">Oct 2024 - Apr 2025</span>
                             <div class="timeline-content">
                                 <h3>Java Developer Intern</h3>

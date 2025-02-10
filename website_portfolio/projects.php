@@ -16,6 +16,16 @@
     </div>
 
     <div class="project-list">
+        <!-- Kamisado Game -->
+        <div class="project-card">
+            <img src="assets/img/kamisado.gif" alt="Kamisado Game">
+            <div class="project-info">
+                <h2>Kamisado Game</h2>
+                <p>Interactive digital version of the strategic board game Kamisado, using Python object-oriented programming and Pygame library. </p>
+                <a href="https://github.com/markshmidt/projects/tree/main/PythonProjects/kamisado" class="project-btn" target="_blank">See Code</a>
+            </div>
+        </div>
+
         <!-- Racing Game -->
         <div class="project-card">
             <img src="assets/img/project-maven.gif" alt="Racing Game">

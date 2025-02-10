@@ -227,7 +227,7 @@ nav ul {
     height: 100%;
     background-color: #00b7ff;
     transform: translateX(-50%);
-    z-index: -2;
+    z-index: -3;
 }
 .timeline-item {
     background-color: rgba(0, 183, 255, 0.15);
@@ -579,6 +579,13 @@ body.projects-page {
         font-size: 50px;
         text-align: center;
     }
+    .buttons {
+        width: 150px;
+        font-size: 18px;
+        margin-bottom:10px;
+        align-content: center;
+    }
+
     .contact-info {
         text-align: center;
         width: 90%;
@@ -601,9 +608,11 @@ body.projects-page {
         width: 80%;
         margin: 10px auto;
     }
+    .footer {
+        padding: 15px 10px;
+    }
 }
 
-/* Projects Section Responsiveness */
 @media (max-width: 768px) {
     .project-container {
         flex-direction: column;
@@ -612,29 +621,28 @@ body.projects-page {
     .project-card {
         width: 90%;
         margin: 0 auto;
+        flex-direction: column;
+        text-align: center;
     }
     .project-card img {
         width: 100%;
-        max-width: 350px;
-        margin: 0 auto;
+        max-width: 280px;
+        height: auto;
+        margin: 0 auto 10px;
+        display: block;
     }
     .project-card h5 {
-        font-size: 30px;
+        font-size: 25px;
     }
     .project-card p {
-        font-size: 20px;
+        font-size: 18px;
     }
     .project-card .btn {
         font-size: 18px;
         padding: 10px 20px;
     }
-    .project-card img {
-        width: 200px;
-        height: 200px;
-    }
 }
 
-/* Header & Navigation Tweaks */
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
@@ -646,9 +654,25 @@ body.projects-page {
         flex-direction: column;
         align-items: center;
     }
-    .header nav a {
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding-top: 10px;
+    }
+    .nav-links li a {
         font-size: 20px;
-        margin: 5px 0;
+        display: block;
+    }
+    .info h1 {
+        font-size: 40px;
+    }
+    .info p {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+    .contact-info p {
+        font-size: 18px;
     }
 }
 
@@ -663,13 +687,16 @@ body.projects-page {
         text-align: center;
         backdrop-filter: blur(20px);
     }
+    #about-me p{
+        width: 100%;
+        font-size: 15px;
+    }
     h1, h2 {
         font-size: 50px;
     }
     .timeline::before {
-        left: 5%;
         z-index: -1;
-        backdrop-filter: blur(20px);
+        backdrop-filter: blur(20%);
     }
     .timeline-date {
         position: relative;
@@ -677,6 +704,7 @@ body.projects-page {
         display: block;
         text-align: center;
         margin-bottom: 10px;
+
     }
     .footer p {
         font-size: 14px;
