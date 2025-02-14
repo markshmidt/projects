@@ -164,6 +164,9 @@ nav ul {
 
 
 /* ABOUT ME PAGE*/
+body.about-page{
+    background-image: url('../img/background_2.png');
+}
 #about-me {
     width: 75%;
     margin: auto;
@@ -198,7 +201,6 @@ nav ul {
     width: 80%;
     margin: auto;
     padding: 50px 0;
-
 }
 
 #timeline h2 {
@@ -214,24 +216,22 @@ nav ul {
     flex-direction: column;
     gap: 40px;
     position: relative;
-    overflow: visible !important;
 }
 .timeline::before {
     content: "";
     position: absolute;
     top: 0;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     left: 50%;
     width: 4px;
     height: 100%;
     background-color: #00b7ff;
     transform: translateX(-50%);
     z-index: -3;
+    opacity: 0.5;
 }
 .timeline-item {
-    background-color: rgba(0, 183, 255, 0.15);
-    backdrop-filter: blur(20px);
+    background-color: rgba(0, 183, 255, 0.2);
+    backdrop-filter: blur(10px);
     border: 2px solid #00b7ff;
     border-radius: 15px;
     padding: 20px;
@@ -240,8 +240,7 @@ nav ul {
     text-align: center;
     transition: all 0.3s ease-in-out;
     z-index: 1;
-    will-change: transform;
-    transform: translateZ(0)
+    position: relative;
 }
 .timeline-item:hover {
     background-color: rgba(0, 183, 255, 0.3);
@@ -253,11 +252,11 @@ nav ul {
 }
 .timeline-content {
     background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
     border-radius: 15px;
     padding: 20px;
     transition: all 0.3s ease-in-out;
-    z-index: 2;
+    z-index: 1;
 }
 .timeline-content:hover {
     background: rgba(255, 255, 255, 0.3);
@@ -299,7 +298,6 @@ nav ul {
 .timeline-detail {
     display: none;
     margin-top: 15px;
-    backdrop-filter: blur(20px);
     padding: 15px;
     background-color: rgba(0, 183, 255, 0.2);
     border-left: 4px solid #007bff;

@@ -1,0 +1,140 @@
+@model List<Product>
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<!-- filtering-->
+<form method="get" class="mb-4">
+    <div class="row">
+        <!-- by name -->
+        <div class="col-md-3">
+            <input type="text" name="search" class="form-control" placeholder="Search by name" value="@Context.Request.Query["search"]">
+        </div>
+
+        <!-- by category -->
+        <div class="col-md-3">
+            <select name="categoryId" class="form-control">
+                <option value="">All Categories</option>
+                @foreach (var category in ViewBag.Categories)
+                {
+                    <option value="@category.Id" selected="@(Context.Request.Query["categoryId"] == category.Id.ToString())">@category.Name</option>
+                }
+            </select>
+        </div>
+
+        <!-- by price -->
+        <div class="col-md-2">
+            <input type="number" name="minPrice" class="form-control" placeholder="Min Price" value="@Context.Request.Query["minPrice"]">
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="maxPrice" class="form-control" placeholder="Max Price" value="@Context.Request.Query["maxPrice"]">
+        </div>
+
+        <!-- by stock -->
+        <div class="col-md-2">
+            <input type="checkbox" name="lowStock" value="true" @(Context.Request.Query["lowStock"] == "true" ? "checked" : "")>
+            <label for="lowStock">Low Stock</label>
+        </div>
+        
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary">Apply Filters</button>
+            <a href="/Product/Index" class="btn btn-secondary">Reset Filters</a>
+        </div>
+    </div>
+</form>
+
+<!-- sorting-->
+<div class="mb-3">
+    <a href="?sortOrder=name_asc" class="btn btn-light">Sort by Name ↑</a>
+    <a href="?sortOrder=name_desc" class="btn btn-light">Sort by Name ↓</a>
+    <a href="?sortOrder=price_asc" class="btn btn-light">Sort by Price ↑</a>
+    <a href="?sortOrder=price_desc" class="btn btn-light">Sort by Price ↓</a>
+</div>
+
+
+<div class="container mt-4">
+    <h1 class="mb-4">Product List</h1>
+
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <p class="card-text"><strong>Price: </strong>$@product.Price.ToString("F2")</p>
+                        <p class="card-text"><strong>Stock Quantity: </strong>@product.Stock</p>
+
+                    
+                        <button class="btn btn-primary view-details-btn"
+                                data-name="@product.Name"
+                                data-description="@product.Description"
+                                data-price="@product.Price"
+                                data-quantity="@product.Stock"
+                                data-category="@product.Category?.Name"
+                                data-lowstock="@(product.Stock < 10 ? "Yes" : "No")">
+                            View Details
+                        </button>
+
+                    
+                        <form asp-controller="Cart" asp-action="Add" method="post">
+                            <input type="hidden" name="productId" value="@product.Id" />
+                            <input type="hidden" name="quantity" value="1"/>
+                            <button class="btn btn-outline-primary" type="submit">
+                                Add to Cart
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+<!-- modal window -->
+<div class="modal fade" id="product" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productModalLabel">Product Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4 id="modalProductName"></h4>
+                <p id="modalProductDescription"></p>
+                <p><strong>Price:</strong> $<span id="modalProductPrice"></span></p>
+                <p><strong>Stock Quantity:</strong> <span id="modalProductQuantity"></span></p>
+                <p><strong>Low Stock:</strong> <span id="modalLowStockStatus"></span></p>
+                <p><strong>Category:</strong> <span id="modalProductCategory"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const modal = new bootstrap.Modal(document.getElementById('product'));
+
+        document.querySelectorAll(".view-details-btn").forEach(button => {
+            button.addEventListener("click", function () {
+                document.getElementById("modalProductName").textContent = this.getAttribute("data-name");
+                document.getElementById("modalProductDescription").textContent = this.getAttribute("data-description");
+                document.getElementById("modalProductPrice").textContent = this.getAttribute("data-price");
+                document.getElementById("modalProductQuantity").textContent = this.getAttribute("data-quantity");
+                document.getElementById("modalLowStockStatus").textContent = this.getAttribute("data-lowstock");
+                document.getElementById("modalProductCategory").textContent = this.getAttribute("data-category");
+                
+                modal.show();
+            });
+        });
+    });
+</script>
+
+<!-- Add Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

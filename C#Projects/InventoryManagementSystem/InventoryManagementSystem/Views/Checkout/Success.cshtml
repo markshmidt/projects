@@ -1,0 +1,11 @@
+
+
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "_Layout";
+}
+
+<h2>Congratulations, your order is placed!</h2>
+<h3>Your order number is: </h3>
+<b>@ViewBag.OrderId</b>
+<p>Save this order number, you will need it to <a asp-controller="Order" asp-action="Index">track your order</a></p>

@@ -1,0 +1,51 @@
+@model Order
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Order #@Model.Id</h2>
+<h3>Details: </h3>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.OrderItems)
+    {
+        <tr>
+            <td>@item.Product.Name</td>
+            <td>@item.Product.Description</td>
+            <td>@item.Price.ToString("C2")</td>
+            <td>@item.Quantity</td>
+            <td>@((item.Quantity * item.Price).ToString("C2"))</td>
+        </tr>
+    }
+    </tbody>
+    <tr>
+        <td colspan="4"></td>
+        <td>@Model.TotalPrice.ToString("C2")</td>
+    </tr>
+</table>
+<h3>Customer information: </h3>
+<ul class="list-group list-group-flush"> 
+    <li class="list-group-item">
+        <span>Full name: @Model.Name</span>
+    </li>
+    <li class="list-group-item">
+        <span>Address: @Model.Address</span>
+    </li>
+    <li class="list-group-item">
+        <span>Email: @Model.Email</span>
+    </li>
+    <li class="list-group-item">
+        <span>Phone number: @Model.PhoneNumber</span>
+    </li>
+</ul>

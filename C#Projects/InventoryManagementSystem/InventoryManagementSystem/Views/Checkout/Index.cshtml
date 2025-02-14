@@ -1,0 +1,46 @@
+@model CheckoutModel
+
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "_Layout";
+}
+
+<h2>Checkout</h2>
+<h3>Your information</h3>
+@using (Html.BeginForm())
+{
+    <div class="mb-3">
+        <label asp-for="Name">Full Name:</label>
+        @Html.TextBoxFor(model => model.Name, new {@class = "form-control"})
+        @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Address">Address:</label>
+        @Html.TextBoxFor(model => model.Address, new {@class = "form-control"})
+        @Html.ValidationMessageFor(model => model.Address, "", new {@class = "text-danger"})
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email">Email address:</label>
+        @Html.TextBoxFor(model => model.Email, new {@class = "form-control"})
+        @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="PhoneNumber">Phone number:</label>
+        @Html.TextBoxFor(model => model.PhoneNumber, new {@class = "form-control"})
+        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new {@class = "text-danger"})
+    </div>
+
+    <button type="submit" class="btn btn-primary">Confirm order</button>
+
+    @Html.ValidationSummary(true)
+}
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

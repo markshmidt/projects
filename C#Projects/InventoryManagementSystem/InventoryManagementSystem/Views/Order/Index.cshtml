@@ -1,0 +1,17 @@
+@{
+    ViewBag.Title = "Order";
+    Layout = "_Layout";
+}
+
+<h2>Track your order</h2>
+<form method="post">
+    <div class="mb-3">
+        <label for="orderId">Order Number: </label>
+        <input class="form-control" type="text" name="orderId" id="orderId" required>
+    </div>
+    <div class="mb-3">
+        <label for="email">Email: </label>
+        <input class="form-control" type="email" name="email" id="email" required>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Track</button>
+</form>
