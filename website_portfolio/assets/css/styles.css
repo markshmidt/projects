@@ -225,12 +225,26 @@ body.about-page{
     width: 4px;
     height: 100%;
     background-color: #00b7ff;
-    transform: translateX(-50%);
+
     z-index: -3;
     opacity: 0.5;
 }
+/* Animation for timeline-item */
+@keyframes blur-in {
+    from {
+        background-color: rgba(0, 183, 255, 0.2);
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        background-color: rgba(0, 183, 255, 0.2);
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
 .timeline-item {
-    background-color: rgba(0, 183, 255, 0.2);
     backdrop-filter: blur(10px);
     border: 2px solid #00b7ff;
     border-radius: 15px;
@@ -238,10 +252,14 @@ body.about-page{
     width: 60%;
     margin: 20px auto;
     text-align: center;
-    transition: all 0.3s ease-in-out;
     z-index: 1;
     position: relative;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    background-color: rgba(0, 183, 255, 0.2);
+    animation: fadeIn 1s ease-in-out forwards;
 }
+
 .timeline-item:hover {
     background-color: rgba(0, 183, 255, 0.3);
 }
@@ -252,10 +270,10 @@ body.about-page{
 }
 .timeline-content {
     background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    /*backdrop-filter: blur(10px);*/
     border-radius: 15px;
     padding: 20px;
-    transition: all 0.3s ease-in-out;
+    /*transition: all 0.3s ease-in-out;*/
     z-index: 1;
 }
 .timeline-content:hover {
@@ -708,8 +726,58 @@ body.projects-page {
         font-size: 14px;
     }
 }
+@media (max-width: 1024px) {
+    .content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .profile img {
+        width: 250px;
+        height: 250px;
+        margin-top: 120px;
+    }
+    .info {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    .info h1 {
+        font-size: 60px;
+    }
+    .info p {
+        font-size: 22px;
+    }
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
 
-/* General Fade-in Animation */
+
+@media (max-width: 768px) {
+    .profile img {
+        width: 200px;
+        height: 200px;
+    }
+    .info h1 {
+        font-size: 50px;
+    }
+    .info p {
+        font-size: 22px;
+    }
+    .btn {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}
+
+/* Line Separator for Sections */
+.row-separator {
+    height: 50px;
+    width: 100%;
+}
+
+
+/* ANIMATIONS */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -721,13 +789,11 @@ body.projects-page {
     }
 }
 
-/* Applying Animations */
 .project-container, .contact-container, .contact-form, .contact-info, .project-card, .contacts, .projects-description {
     opacity: 0;
     animation: fadeIn 1s ease-in-out forwards;
 }
 .projects-description { animation-delay: 0.3s; }
-/* Staggered Animations for Better Load Effect */
 .project-card:nth-child(1) { animation-delay: 0.6s; }
 .project-card:nth-child(2) { animation-delay: 0.9s; }
 .project-card:nth-child(3) { animation-delay: 1.2s; }
@@ -742,56 +808,27 @@ body.projects-page {
 .contact-intro { animation-delay: 0.3s; }
 .contact-info { animation-delay: 0.6s; }
 .contact-form { animation-delay: 0.9s; }
+
 /* Home Page Animations */
-#introduction, #hero-section, #about-me-section, #projects-section, #contact-section {
+#introduction, #about-me-section, #projects-section, #contact-section {
     opacity: 0;
     animation: fadeIn 1s ease-in-out forwards;
 }
 
-/* Adding delays for staggered animations */
+/* Adding delays */
 #introduction { animation-delay: 0.2s; }
-#hero-section { animation-delay: 0.4s; }
 #about-me-section { animation-delay: 0.6s; }
 #projects-section { animation-delay: 0.8s; }
 #contact-section { animation-delay: 1s; }
 
 /* About Page Animations */
-#about-me, #timeline {
+#about-me {
     opacity: 0;
     animation: fadeIn 1s ease-in-out forwards;
 }
 
 #about-me { animation-delay: 0.3s; }
 #timeline { animation-delay: 0.6s; }
-
-/* Timeline Item Animation */
-.timeline-item {
-    opacity: 0;
-    transform: translateX(-30px);
-    animation: fadeIn 1s ease-in-out forwards;
-}
-
-/* Delay timeline items for staggered effect */
-.timeline-item:nth-child(1) { animation-delay: 0.3s; }
-.timeline-item:nth-child(2) { animation-delay: 0.6s; }
-.timeline-item:nth-child(3) { animation-delay: 0.9s; }
-.timeline-item:nth-child(4) { animation-delay: 1.2s; }
-
-/* Scroll Animation Trigger */
-.scroll-reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.scroll-reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-.home-container {
-    opacity: 0;
-    animation: fadeIn 1s ease-in-out forwards;
-}
 
 /* Profile Image Animation */
 .profile img {
@@ -832,53 +869,4 @@ body.projects-page {
     box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.6);
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .content {
-        flex-direction: column;
-        text-align: center;
-    }
-    .profile img {
-        width: 250px;
-        height: 250px;
-        margin-top: 120px;
-    }
-    .info {
-        max-width: 90%;
-        margin: 0 auto;
-    }
-    .info h1 {
-        font-size: 60px;
-    }
-    .info p {
-        font-size: 22px;
-    }
-    .buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-}
 
-/* Extra Small Screens */
-@media (max-width: 768px) {
-    .profile img {
-        width: 200px;
-        height: 200px;
-    }
-    .info h1 {
-        font-size: 50px;
-    }
-    .info p {
-        font-size: 22px;
-    }
-    .btn {
-        width: 100%;
-        margin-bottom: 30px;
-    }
-}
-
-/* Line Separator for Sections */
-.row-separator {
-    height: 50px;
-    width: 100%;
-}
