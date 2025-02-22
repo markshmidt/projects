@@ -1,16 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin-PC
-  Date: 20.02.2025
-  Time: 6:04
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<%@ page import="javax.servlet.http.HttpSession" %>
 
-</body>
-</html>
+<%
+    HttpSession session = request.getSession();
+    String playerName = (String) session.getAttribute("playerName");
+%>
+
+<h2>Привет, <%= playerName %>! Ты потерял память. Принять вызов НЛО?</h2>
+<form action="game" method="get">
+    <button name="choice" value="accept">Принять вызов</button>
+    <button name="choice" value="decline">Отклонить вызов</button>
+</form>
