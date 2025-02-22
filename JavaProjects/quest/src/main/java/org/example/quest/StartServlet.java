@@ -3,12 +3,25 @@ package org.example.quest;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
-@Path("/hello-world")
-public class StartServlet {
-    @GET
-    @Produces("text/plain")
-    public String hello() {
-        return "Hello, World!";
+@WebServlet("/start")
+public class StartServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String playerName = request.getParameter("playerName");
+        HttpSession session = request.getSession();
+        session.setAttribute("playerName", playerName);
+        session.setAttribute("gamesPlayed", 0);
+        response.sendRedirect("game");
     }
 }
