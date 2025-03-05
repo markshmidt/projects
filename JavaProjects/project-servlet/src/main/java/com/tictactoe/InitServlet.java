@@ -31,7 +31,6 @@ public class InitServlet extends HttpServlet {
         // field states sorted by index to draw crosses and zeros
         currentSession.setAttribute("data", data);
 
-        // Перенаправление запроса на страницу index.jsp через сервер
         getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
 
     }
