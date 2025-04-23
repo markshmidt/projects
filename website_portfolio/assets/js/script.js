@@ -37,3 +37,17 @@ window.addEventListener("scroll", function () {
     }
 });
 
+
+//scrolling header
+let lastScrollTop = 0;
+const header = document.querySelector('header');
+
+window.addEventListener("scroll", function () {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) {
+        header.style.top = "-100px"; // скрыть
+    } else {
+        header.style.top = "0"; // показать
+    }
+    lastScrollTop = scrollTop;
+});

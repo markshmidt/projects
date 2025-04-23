@@ -9,7 +9,7 @@ body {
     margin: 0;
     padding: 0;
     color: white;
-    background-image: url('../img/background_2.png');
+    background-image: url('/assets/img/background_2.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -35,6 +35,11 @@ nav ul {
 .nav-links li a:hover {
     color: #00b7ff;
 }
+.nav-links a.active {
+    color: #00b7ff;
+    font-weight: bold;
+    text-decoration: underline;
+}
 
 /* Transparent Header */
 .header {
@@ -48,11 +53,12 @@ nav ul {
     justify-content: space-between;
     z-index: 1000;
     background: transparent;
+
 }
-.header-scrolled {
-    background-color: rgba(53, 97, 229, 0.25);
-    transition: background-color 0.3s ease-in-out;
-}
+/*.header-scrolled {*/
+/*    background-color: rgba(53, 97, 229, 0.25);*/
+/*    transition: background-color 0.3s ease-in-out;*/
+/*}*/
 
 .header-container {
     width: 100%;
@@ -63,10 +69,24 @@ nav ul {
 }
 
 /* Logo Styling */
-.logo img {
+.logo-download {
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo-download:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0, 183, 255, 0.5);
+}
+
+.logo-img {
     height: 35px;
     width: auto;
+    display: block;
 }
+
 
 
 /* FOOTER */
