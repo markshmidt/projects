@@ -1,0 +1,20 @@
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "_Layout";
+    List<CartItem> outOfStock = ViewBag.OutOfStock;
+}
+
+<h2>Unfortunately, some of the items are out of stock :(</h2>
+<ul>
+    @foreach (var item in outOfStock)
+    {
+        <li>
+            <div>
+                <p>@item.Product.Name</p>
+                <p>In cart: @item.Quantity</p>
+                <p>In stock: @item.Product.Stock</p>
+            </div>
+        </li>
+    }
+</ul>
+<a class="btn btn-warning" asp-controller="Cart" asp-action="Index">Back to cart</a>

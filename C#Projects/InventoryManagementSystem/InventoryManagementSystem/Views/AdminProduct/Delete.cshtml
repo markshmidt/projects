@@ -1,0 +1,41 @@
+@model Product
+
+@{
+    ViewBag.Title = "Delete Product";
+    Layout = "_AdminLayout";
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <div asp-validation-summary="All" class="text-danger"></div>
+    </div>
+}
+
+
+<h2>@ViewBag.Title</h2>
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">@Model.Name</h5>
+        </div>
+
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Name</dt>
+                <dd class="col-sm-9">@Model.Name</dd>
+                <dt class="col-sm-3">Description</dt>
+                <dd class="col-sm-9">@Model.Description</dd>
+                <dt class="col-sm-3">Price</dt>
+                <dd class="col-sm-9">@Model.Price.ToString("C2")</dd>
+                <dt class="col-sm-3">Stock</dt>
+                <dd class="col-sm-9" style="@(Model.Stock < 10 ? "color: red;" : "")">@Model.Stock</dd>
+            </dl>
+            <form asp-action="Delete" asp-controller="AdminProduct" method="post">
+                <input type="hidden" asp-for="Id"/>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>

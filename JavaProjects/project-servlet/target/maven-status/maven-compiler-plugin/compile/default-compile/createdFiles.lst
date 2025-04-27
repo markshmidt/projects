@@ -1,0 +1,5 @@
+com\tictactoe\Field.class
+com\tictactoe\LogicServlet.class
+com\tictactoe\Sign.class
+com\tictactoe\InitServlet.class
+com\tictactoe\RestartServlet.class

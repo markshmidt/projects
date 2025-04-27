@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxWidth="1.7976931348623157E308" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group44.assignment2.controllers.payroll.CellController">
+   <children>
+      <BorderPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <Text fx:id="userText" strokeType="OUTSIDE" strokeWidth="0.0" text="User" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Button fx:id="view" mnemonicParsing="false" text="View" BorderPane.alignment="CENTER" />
+         </right>
+         <center>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Amount: " />
+                        <Text fx:id="amountText" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+                     </children>
+                  </HBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

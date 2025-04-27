@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group44.assignment2.controllers.LoginController" stylesheets="@style/global.css">
+    <children>
+        <VBox alignment="CENTER" layoutX="219.0" layoutY="100.0" prefHeight="200.0" spacing="12.0">
+            <children>
+                <Label text="Username" />
+                <TextField fx:id="usernameInput" />
+                <Label text="Password" />
+                <PasswordField fx:id="passwordInput"/>
+                <!-- Error message -->
+                <Text fx:id="errorText" text="Invalid username or password" visible="false" style="-fx-fill: red; -fx-font-size: 14px;" />
+                <Button mnemonicParsing="false" text="Login" styleClass="login-button" onAction="#login" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

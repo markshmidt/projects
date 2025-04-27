@@ -1,0 +1,10 @@
+@{
+    ViewBag.Title = "Oops...";
+    Layout = "_Layout";
+}
+
+<h2>We could not find the resource requested...</h2>
+@if (ViewBag.ErrorMessage != null)
+{
+    <p>@ViewBag.ErrorMessage</p>
+}

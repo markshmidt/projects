@@ -1,0 +1,55 @@
+@model Product
+
+@{
+    ViewData["Title"] = "Edit Product";
+    Layout = "_AdminLayout";
+}
+
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="mb-4">Edit Product</h1>
+
+            <div class="card">
+                <div class="card-body">
+                    <form asp-action="Edit" asp-controller="AdminProduct" method="post">
+                        <input type="hidden" asp-for="Id"/>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Name" class="form-label">Name</label>
+                            <input asp-for="Name" class="form-control"/>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Description" class="form-label">Description</label>
+                            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Price" class="form-label">Price</label>
+                            <input asp-for="Price" class="form-control"/>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Stock" class="form-label">Stock</label>
+                            <input asp-for="Stock" class="form-control"/>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="CategoryId" class="control-label">Category</label>
+                            <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories"></select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

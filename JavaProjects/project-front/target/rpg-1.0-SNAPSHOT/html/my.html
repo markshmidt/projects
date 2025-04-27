@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Admin Panel</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../css/my.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>RPG Admin Panel</h2>
+
+    <label for="countPerPage">Count per page:</label>
+    <select id="countPerPage">
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+    </select>
+
+    <div class="table-container">
+        <table id="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Title</th>
+                <th>Race</th>
+                <th>Profession</th>
+                <th>Level</th>
+                <th>Birthday</th>
+                <th>Banned</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <div class="form-container">
+        <h3>Create new account:</h3>
+        <input type="text" id="newName" maxlength="12" placeholder="Name">
+        <input type="text" id="newTitle" maxlength="30" placeholder="Title">
+        <select id="newRace">
+            <option value="HUMAN">HUMAN</option>
+            <option value="DWARF">DWARF</option>
+            <option value="ELF">ELF</option>
+            <option value="ORC">ORC</option>
+            <option value="TROLL">TROLL</option>
+        </select>
+        <select id="newProfession">
+            <option value="WARRIOR">WARRIOR</option>
+            <option value="ROGUE">ROGUE</option>
+            <option value="SORCERER">SORCERER</option>
+            <option value="CLERIC">CLERIC</option>
+        </select>
+        <input type="number" id="newLevel" min="0" max="100" placeholder="Level">
+        <input type="date" id="newBirthday">
+        <select id="newBanned">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+        </select>
+        <button type="button" onclick="createPlayer()">Create</button>
+    </div>
+</div>
+
+
+<script>
+    function show_list(pageNumber = 0) {
+        let countPerPage = $("#countPerPage").val();
+        let url = `/rest/players?pageNumber=${pageNumber}&pageSize=${countPerPage}`;
+
+        $.get(url, function(response) {
+            let tableContent = "";
+            $.each(response, function(i, item) {
+                tableContent += "<tr id='row-" + item.id + "'>" +
+                    "<td>" + item.id + "</td>" +
+                    "<td>" + item.name + "</td>" +
+                    "<td>" + item.title + "</td>" +
+                    "<td>" + item.race + "</td>" +
+                    "<td>" + item.profession + "</td>" +
+                    "<td>" + item.level + "</td>" +
+                    "<td>" + new Date(item.birthday).toLocaleDateString() + "</td>" +
+                    "<td>" + (item.banned ? "Yes" : "No") + "</td>" +
+                    "<td><img src='../img/edit.png' class='edit-btn' data-id='" + item.id + "'></td>" +
+                    "<td><img src='../img/delete.png' class='delete-btn' data-id='" + item.id + "'></td>" +
+                    "</tr>";
+            });
+            $("#table tbody").html(tableContent);
+
+            $(".delete-btn").click(function() {
+                let playerId = $(this).data("id");
+                delete_player(playerId);
+            });
+
+            $(".edit-btn").click(function() {
+                let playerId = $(this).data("id");
+                edit_player(playerId);
+            });
+        });
+    }
+
+    $("#countPerPage").change(function() {
+        show_list(0);
+    });
+
+
+    function delete_player(playerId) {
+        $.ajax({
+            url: "/rest/players/" + playerId,
+            type: "DELETE",
+            success: function(response, status, xhr) {
+                if (xhr.status === 204 || xhr.status === 200) {
+                    $("#row-" + playerId).remove();
+                } else {
+                    alert("Unexpected response from server.");
+                }
+            },
+            error: function() {
+                alert("Error deleting player.");
+            }
+        });
+    }
+
+    function edit_player(playerId) {
+        let row = $("#row-" + playerId);
+
+        // Convert name and title fields into input fields
+        row.find("td:nth-child(2)").html("<input type='text' value='" + row.find("td:nth-child(2)").text().trim() + "'>");
+        row.find("td:nth-child(3)").html("<input type='text' value='" + row.find("td:nth-child(3)").text().trim() + "'>");
+
+        // Convert level field into a number input
+        let currentLevel = row.find("td:nth-child(6)").text().trim();
+        row.find("td:nth-child(6)").html("<input type='number' min='0' max='100' value='" + currentLevel + "'>");
+
+        // Get current banned status
+        let currentBanned = row.find("td:nth-child(8)").text().trim() === "Yes";
+
+        // Create a select dropdown with the correct pre-selected value
+        let bannedSelect = "<select>" +
+            "<option value='true' " + (currentBanned ? "selected" : "") + ">Yes</option>" +
+            "<option value='false' " + (!currentBanned ? "selected" : "") + ">No</option>" +
+            "</select>";
+
+        row.find("td:nth-child(8)").html(bannedSelect);
+
+        // Change edit button to save button
+        let editButton = row.find(".edit-btn");
+        editButton.attr("src", "../img/save.png");
+        editButton.off("click").click(function() {
+            save_player(playerId);
+        });
+    }
+
+
+    function save_player(playerId) {
+        let row = $("#row-" + playerId);
+
+        let levelInput = row.find("td:nth-child(6) input");
+        let updatedLevel = parseInt(levelInput.val().trim())
+
+        let updatedPlayer = {
+            id: playerId,
+            name: row.find("td:nth-child(2) input").val().trim(),
+            title: row.find("td:nth-child(3) input").val().trim(),
+            race: row.find("td:nth-child(4)").text().trim(),
+            profession: row.find("td:nth-child(5)").text().trim(),
+            level: isNaN(updatedLevel) ? 0 : updatedLevel,  // Ensure valid number
+            birthday: new Date(row.find("td:nth-child(7)").text().trim()).getTime(),
+            banned: row.find("td:nth-child(8) select").val() === "true"
+        };
+
+        console.log("🚀 Sending update request:", updatedPlayer);
+
+        $.ajax({
+            url: "/rest/players/" + playerId,
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(updatedPlayer),
+            success: function(response) {
+                console.log("Update successful:", response);
+
+                row.find("td:nth-child(2)").text(updatedPlayer.name);
+                row.find("td:nth-child(3)").text(updatedPlayer.title);
+                row.find("td:nth-child(6)").html(updatedPlayer.level);
+                row.find("td:nth-child(8)").text(updatedPlayer.banned ? "Yes" : "No");
+
+                // Restore Edit button
+                let editButton = row.find(".edit-btn");
+                editButton.attr("src", "../img/edit.png");
+                editButton.off("click").click(function() {
+                    edit_player(playerId);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error("❌ Error updating player:", xhr.responseText);
+                alert("Error updating player. Check console for details.");
+            }
+        });
+    }
+
+
+
+    function createPlayer() {
+        let newPlayer = {
+            name: $("#newName").val(),
+            title: $("#newTitle").val(),
+            race: $("#newRace").val(),
+            profession: $("#newProfession").val(),
+            level: parseInt($("#newLevel").val()),
+            birthday: new Date($("#newBirthday").val()).getTime(),
+            banned: $("#newBanned").val() === "true"
+        };
+
+        $.ajax({
+            url: "/rest/players",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(newPlayer),
+            success: function() {
+                $("#createAccountForm")[0].reset();
+                show_list();
+            },
+            error: function() {
+                alert("Error occured while creating a player!!");
+            }
+        });
+    }
+
+    show_list();
+</script>
+
+</body>
+</html>
