@@ -36,7 +36,6 @@
 #mainContent {
     transition: opacity 2s ease-in-out;
 }
-
 body {
     margin: 0;
     padding: 0;
@@ -47,6 +46,7 @@ body {
     background-position: center;
     background-attachment: fixed;
 }
+
 
 /* HEADER STYLING */
 nav ul {
