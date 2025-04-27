@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+
+</head>
+<body>
+<div id="header-placeholder"></div>
+<button id="show-header-btn" style="display: none;" aria-label="Show Header"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M8 3.293l5.354 5.353-.708.708L8 4.707l-4.646 4.647-.708-.708z"/>
+</svg></button>
+<div id="preloader">
+    <canvas id="matrixCanvas"></canvas>
+</div>
+<main class="contacts py-5" id="mainContent">
+    <h1 class="contact-title">Contact Me</h1>
+
+    <!-- Contact Introduction -->
+    <section class="contact-intro">
+        <p>I am always open for new collaborations and opportunities! If you want to stay in touch, you can find me here:</p>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="contact-info text-center mb-5">
+        <p>Email: <a href="mailto:masha.shmidt.04@gmail.com">masha.shmidt.04@gmail.com</a></p>
+        <p>GitHub: <a href="https://github.com/markshmidt" target="_blank">github.com/markshmidt</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/mariia-shmidt-14a084324/" target="_blank">linkedin.com/in/mariia-shmidt-14a084324/</a></p>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-form">
+        <form action="send_email.php" method="POST">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+    </section>
+</main>
+<div id="footer-placeholder"></div>
+<script src="assets/js/include.js" defer></script>
+<script src="assets/js/script.js" defer></script>
+</body>
