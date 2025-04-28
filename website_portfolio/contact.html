@@ -9,7 +9,13 @@
 </head>
 <body>
 <div id="header-placeholder"></div>
-<main class="contacts py-5">
+<button id="show-header-btn" style="display: none;" aria-label="Show Header"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M8 3.293l5.354 5.353-.708.708L8 4.707l-4.646 4.647-.708-.708z"/>
+</svg></button>
+<div id="preloader">
+    <canvas id="matrixCanvas"></canvas>
+</div>
+<main class="contacts py-5" id="mainContent">
     <h1 class="contact-title">Contact Me</h1>
 
     <!-- Contact Introduction -->
@@ -48,4 +54,5 @@
 </main>
 <div id="footer-placeholder"></div>
 <script src="assets/js/include.js" defer></script>
+<script src="assets/js/script.js" defer></script>
 </body>

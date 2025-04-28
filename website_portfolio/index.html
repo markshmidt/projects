@@ -8,10 +8,17 @@
 </head>
 
 
-<body>
-<div id="header-placeholder"></div>
 
-<main class="home-container">
+<body>
+<div id="preloader">
+    <canvas id="matrixCanvas"></canvas>
+</div>
+<div id="header-placeholder"></div>
+<button id="show-header-btn" style="display: none;" aria-label="Show Header"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M8 3.293l5.354 5.353-.708.708L8 4.707l-4.646 4.647-.708-.708z"/>
+</svg></button>
+
+<main class="home-container" id="mainContent">
     <div class="content">
         <div class="profile">
             <img src="assets/img/profile.png" alt="Mari Shmidt">
@@ -37,6 +44,6 @@
 </main>
 <div id="footer-placeholder"></div>
 <script src="assets/js/include.js" defer></script>
+<script src="assets/js/script.js" defer></script>
 </body>
-
 
