@@ -112,17 +112,3 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('main').style.opacity = '1';
     }, 500);
 });
-function typeText(element, text, speed = 50) {
-    let index = 0;
-    element.textContent = '';
-
-    function addLetter() {
-        if (index < text.length) {
-            element.textContent += text[index];
-            index++;
-            setTimeout(addLetter, speed);
-        }
-    }
-
-    addLetter();
-}

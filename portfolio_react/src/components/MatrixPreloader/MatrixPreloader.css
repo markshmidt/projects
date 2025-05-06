@@ -1,0 +1,24 @@
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 9999;
+    overflow: hidden;
+    transition: opacity 2s ease-in-out;
+    pointer-events: none;
+  }
+  
+  #matrixCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: transparent;
+    pointer-events: none;
+  }
+  #mainContent {
+    transition: opacity 2s ease-in-out;
+  }
