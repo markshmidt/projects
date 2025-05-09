@@ -50,7 +50,7 @@ const MatrixPreloader = () => {
 
         if (drop.y * fontSize > canvas.height && Math.random() > 0.975) {
           drop.y = 0;
-          drop.speed = Math.random() * 3 + 2;
+          drop.speed = Math.random() * 3 + 5;
         }
       });
 

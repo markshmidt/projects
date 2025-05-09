@@ -1,0 +1,33 @@
+
+/* ABOUT ME PAGE*/
+body.about-page{
+    background-image: url('../img/background_2.png');
+  }
+  #about-me {
+    width: 75%;
+    margin: auto;
+    padding: 50px 0;
+    color: white;
+    font-family: Calibri, sans-serif;
+    text-align: center;
+  }
+  #about-me h1 {
+    margin-top: 50px;
+    font-size: 50px;
+    color: #00b7ff;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  #about-me p {
+    font-size: 20px;
+    line-height: 1.6;
+    margin: 0 auto;
+    text-align: left;
+    width: 75%;
+    color: white;
+    background: rgba(0, 191, 255, 0.1);
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 800px;
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
+  }
