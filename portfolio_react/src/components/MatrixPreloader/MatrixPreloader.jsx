@@ -5,6 +5,8 @@ const MatrixPreloader = () => {
   useEffect(() => {
     const canvas = document.getElementById('matrixCanvas');
     const main = document.getElementById('mainContent');
+    const preloader = document.getElementById('preloader');      
+
 
 
     if (!canvas || !main) return;

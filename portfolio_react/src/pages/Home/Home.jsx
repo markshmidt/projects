@@ -1,6 +1,7 @@
 import React from "react";
 import "./Home.css";
 import profileImage from "../../../public/assets/img/profile.png";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -23,9 +24,9 @@ const Home = () => {
             Welcome!
           </p>
           <div className="buttons">
-            <a href="/about" className="btn">About me</a>
-            <a href="/projects" className="btn">My projects</a>
-            <a href="/contact" className="btn">Contact me</a>
+          <Link to="/about" className="btn">About me</Link>
+<Link to="/projects" className="btn">My projects</Link>
+<Link to="/contact" className="btn">Contact me</Link>
           </div>
         </div>
       </div>

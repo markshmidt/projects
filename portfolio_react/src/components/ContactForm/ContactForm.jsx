@@ -11,26 +11,30 @@ const ContactForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    const formData = { name, email, message };
+  
     try {
-      const response = await fetch('http://localhost:5000/contact', {
+      const response = await fetch('http://your-server-ip:3001/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-
-      const data = await response.json();
-      if (data.success) {
-        setStatus('Message sent successfully!');
-        setFormData({ name: '', email: '', message: '' });
+  
+      if (response.ok) {
+        alert('Message sent successfully!');
+        setName('');
+        setEmail('');
+        setMessage('');
       } else {
-        setStatus('Something went wrong. Please try again.');
+        alert('Failed to send message');
       }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setStatus('Server error. Try again later.');
+    } catch (err) {
+      console.error('Error:', err);
+      alert('Error sending message');
     }
   };
+  
 
   return (
     <form className="contact-form" onSubmit={handleSubmit}>
@@ -43,7 +47,7 @@ const ContactForm = () => {
       <label>Message</label>
       <textarea name="message" value={formData.message} onChange={handleChange} required />
 
-      <button type="submit">Send Message</button>
+      <button type="submit">Send</button>
       {status && <p className="form-status">{status}</p>}
     </form>
   );
