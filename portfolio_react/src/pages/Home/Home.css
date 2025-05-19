@@ -23,18 +23,22 @@ body {
     gap: 50px;
   }
   
-  .profile img {
-    width: 400px;
-    height: 400px;
+  .profile-img {
+    display: inline-block;      
+    max-width: 400px;
+    max-height: 400px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 50px;
     border: 5px solid white;
+     cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-origin: center;    
   }
-  .profile img:hover {
-    transform: scale(1.50);
-      opacity: 1;
-      box-shadow: 0 0 10px rgba(0, 183, 255, 0.5);
+  
+  .profile-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 183, 255, 0.5);
   }
   
   

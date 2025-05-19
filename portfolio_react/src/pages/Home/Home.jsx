@@ -1,7 +1,8 @@
 import React from "react";
 import "./Home.css";
-import profileImage from "../../../public/assets/img/profile.png";
+import profileImage from "/assets/img/profile.png";
 import { Link } from "react-router-dom";
+import { motion } from 'framer-motion';
 
 const Home = () => {
   return (
@@ -10,7 +11,15 @@ const Home = () => {
         
       <div className="content">
         <div className="profile">
-          <img src={profileImage} alt="Mari Shmidt" />
+        <motion.img
+  src={profileImage}
+  alt="Mari Shmidt"
+  className="profile-img"
+  onClick={() => window.open('https://www.linkedin.com/in/mariia-shmidt-14a084324/', '_blank')}
+  title="LinkedIn Profile"
+  whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(0,183,255,0.6)' }}
+  transition={{ duration: 0.3 }}
+/>
         </div>
         <div className="info">
           <p>Hi, I'm</p>

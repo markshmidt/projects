@@ -11,30 +11,32 @@ const ContactForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    const formData = { name, email, message };
-  
     try {
-      const response = await fetch('http://your-server-ip:3001/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+      const response = await fetch("https://formspree.io/f/xgvkdqab", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json", // <- это важно!
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
       });
+      
   
       if (response.ok) {
-        alert('Message sent successfully!');
-        setName('');
-        setEmail('');
-        setMessage('');
+        alert("Message sent!");
+        setFormData({ name: "", email: "", message: "" });
       } else {
-        alert('Failed to send message');
+        alert("Failed to send message");
       }
     } catch (err) {
-      console.error('Error:', err);
-      alert('Error sending message');
+      console.error(err);
+      alert("Something went wrong");
     }
   };
-  
 
   return (
     <form className="contact-form" onSubmit={handleSubmit}>

@@ -5,7 +5,7 @@ import ContactForm from "../../components/ContactForm/ContactForm";
 const Contact = () => {
   return (
     <section >
-      <h1 class="contact-title">Contact Me</h1>
+      <h1 className="contact-title">Contact Me</h1>
 
       <div className="contact-intro">
         I am always open for new collaborations and opportunities!<br />
