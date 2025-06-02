@@ -1,0 +1,35 @@
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Gomoku AI</title>
+  <style>
+    table td {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #000;
+      font-size: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<h2>Choose your color:</h2>
+<select id="playerSymbol">
+  <option value="BLACK">BLACK</option>
+  <option value="WHITE">WHITE</option>
+</select>
+<button id="playBtn">Play</button>
+<button id="restartButton">Play again</button>
+
+<div id="gameArea" style="display: none;">
+  <div id="gameStatus">
+    <p id="statusMessage"></p>
+    <p id="winnerMessage"></p>
+  </div>
+  <div id="gameBoard"></div>
+</div>
+
+
+<script src="ai.js"></script>
+</body>
+</html>
