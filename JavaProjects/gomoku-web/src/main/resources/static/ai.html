@@ -3,12 +3,33 @@
   <meta charset="UTF-8">
   <title>Gomoku AI</title>
   <style>
-    table td {
-      width: 30px;
-      height: 30px;
-      border: 1px solid #000;
-      font-size: 20px;
-      text-align: center;
+    body { font-family: sans-serif; text-align: center; padding: 30px; background: url("images/background1.png"); background-size: 100%;}
+    #gameBoard table {
+      background-image: url("/images/board.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin: auto;
+      border-collapse: collapse;
+      width: 630px;
+      height: 630px;
+    }
+
+    #gameBoard td {
+      width: 70px;
+      height: 70px;
+      padding: 0;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .piece {
+      max-width: 90%;
+      max-height: 90%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
     }
   </style>
 </head>

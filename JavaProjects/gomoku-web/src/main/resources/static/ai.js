@@ -29,13 +29,21 @@ document.addEventListener("DOMContentLoaded", () => {
             for (let j = 0; j < state[i].length; j++) {
                 const cell = document.createElement("td");
                 const value = state[i][j];
+                if (value === "BLACK") {
+                    const img = document.createElement("img");
+                    img.src = "/images/black.png";
+                    img.classList.add("piece");
+                    cell.appendChild(img);
+                } else if (value === "WHITE") {
+                    const img = document.createElement("img");
+                    img.src = "/images/white.png";
+                    img.classList.add("piece");
+                    cell.appendChild(img);
+                }
 
-                if (value === "BLACK") cell.textContent = "●";
-                else if (value === "WHITE") cell.textContent = "○";
 
-                // Player's move
                 cell.addEventListener("click", () => {
-                    if (!waiting && value === "EMPTY") {
+                    if (!waiting && state[i][j] === "EMPTY") {
                         makeMove(i, j);
                     }
                 });
@@ -75,7 +83,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Put player's move locally into DOM before server's answer
         const cell = boardContainer.querySelectorAll("tr")[row].children[col];
-        cell.textContent = playerSymbol === "BLACK" ? "●" : "○";
+        const img = document.createElement("img");
+        img.src = playerSymbol === "BLACK" ? "/images/black.png" : "/images/white.png";
+        img.classList.add("piece");
+        cell.appendChild(img);
+
 
         // "AI thinking" animation
         statusMessage.textContent = "AI is thinking...";

@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const winnerMessage = document.getElementById("pvpWinner");
     const restartBtn = document.getElementById("pvpRestart");
 
-    let currentPlayer = "BLACK"; // Начинаем с чёрных
+    let currentPlayer = "BLACK";
 
-    restartBtn.style.display = "none"; // ❌ Скрываем кнопку при загрузке
+    restartBtn.style.display = "none";
 
     function drawBoard(state) {
         boardContainer.innerHTML = "";
@@ -18,10 +18,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 const cell = document.createElement("td");
                 const value = state[i][j];
 
-                if (value === "BLACK") cell.textContent = "●";
-                else if (value === "WHITE") cell.textContent = "○";
+                if (value === "BLACK") {
+                    const img = document.createElement("img");
+                    img.src = "/images/black.png";
+                    img.classList.add("piece");
+                    cell.appendChild(img);
+                } else if (value === "WHITE") {
+                    const img = document.createElement("img");
+                    img.src = "/images/white.png";
+                    img.classList.add("piece");
+                    cell.appendChild(img);
+                }
 
-                // Событие на клик
+
+                // Click event
                 cell.addEventListener("click", () => {
                     if (value === "EMPTY") {
                         makeMove(i, j);
