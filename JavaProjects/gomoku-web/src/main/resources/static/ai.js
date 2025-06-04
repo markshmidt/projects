@@ -60,8 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     statusMessage.textContent = `Current move: ${data.currentMove || "..."}`;
                 if (data.winner && data.winner !== "EMPTY") {
                     winnerMessage.textContent = `Winner is: ${data.winner}`;
+                    statusMessage.textContent = "";
                 } else if (data.full && !data.winner) {
                     winnerMessage.textContent = "It's a draw!";
+                    statusMessage.textContent = "";
                 }
             });
     }
@@ -119,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             document.getElementById("gameArea").style.display = "block";
             playBtn.style.display = "none";
+            restartBtn.style.display = "inline";
             symbolSelect.style.display = "none";
             document.querySelector("h2").style.display = "none";
 
@@ -132,6 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
             method: "POST"
         }).then(() => {
             winnerMessage.textContent = "";
+
             fetchState();
         });
     }

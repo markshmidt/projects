@@ -1,14 +1,28 @@
 <!DOCTYPE html>
-<meta charset="UTF-8" />
+<html lang="ru">
 <head>
+  <meta charset="UTF-8" />
   <title>Gomoku PvP</title>
+  <style>
+    table { border-collapse: collapse; margin-top: 10px; }
+    td {
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      vertical-align: middle;
+      border: 1px solid #000;
+      font-size: 20px;
+    }
+  </style>
 </head>
 <body>
-<h1>Two players mode</h1>
-<div id="status"></div>
-<div id="board"></div>
-<button onclick="restartGame()">Reset the game</button>
+<p id="pvpStatus">Move: BLACK</p>
+<p id="pvpWinner"></p>
+<div id="pvpBoard"></div>
+<button id="pvpRestart" style="display: none">Restart the game</button>
+<button onclick="window.location.href='/'">Back to the menu</button>
+
+
 <script src="pvp.js"></script>
 </body>
 </html>
-
