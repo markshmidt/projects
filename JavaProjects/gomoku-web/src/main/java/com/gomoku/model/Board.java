@@ -24,6 +24,11 @@ public class Board implements IBoard, Cloneable {
      * @return true if the move was winning for the player, otherwise false
      */
     public boolean makeMove(Move move) {
+        //debugged: added condition if the game is over
+        if (winner != null) {
+            throw new IllegalStateException("Game is already over.");
+        }
+
         var row = move.row();
         var col = move.col();
         var cell = move.cell();
@@ -38,6 +43,7 @@ public class Board implements IBoard, Cloneable {
         if (board[row][col] != Cell.EMPTY) {
             throw new IllegalArgumentException("Cell is already occupied");
         }
+
 
         board[row][col] = cell;
         moveCount++;
