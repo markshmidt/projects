@@ -1,18 +1,46 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const welcomeTitle = document.getElementById("welcomeTitle");
-    const playButton = document.getElementById("playButton");
     const modeSelector = document.getElementById("modeSelector");
     const aiBtn = document.getElementById("modeAiBtn");
     const pvpBtn = document.getElementById("modePvpBtn");
 
-    // Start the game
-    playButton.onclick = () => {
-        playButton.style.display = "none";
-        welcomeTitle.style.display = "none";
-        modeSelector.style.display = "block";
-    };
+    if (modeSelector) {
+        modeSelector.style.display = "flex";
+    }
+    if (aiBtn) {
+        aiBtn.addEventListener("click", () => {
+            window.location.href = "/ai";
+        });
+    }
 
-    // Going to the chosen game mode
-    aiBtn.onclick = () => window.location.href = "ai.html";
-    pvpBtn.onclick = () => window.location.href = "pvp.html";
+    if (pvpBtn) {
+        pvpBtn.addEventListener("click", () => {
+            window.location.href = "/pvp";
+        });
+    }
+    const rulesModal = document.getElementById("rulesModal");
+    const aboutModal = document.getElementById("aboutModal");
+
+    const rulesBtn = document.getElementById("nav-rules");
+    const aboutBtn = document.getElementById("nav-about");
+
+    const closeBtns = document.querySelectorAll(".closeModal");
+
+    if (rulesBtn && rulesModal) {
+        rulesBtn.addEventListener("click", () => {
+            rulesModal.classList.remove("hidden");
+        });
+    }
+
+    if (aboutBtn && aboutModal) {
+        aboutBtn.addEventListener("click", () => {
+            aboutModal.classList.remove("hidden");
+        });
+    }
+
+    closeBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            rulesModal.classList.add("hidden");
+            aboutModal.classList.add("hidden");
+        });
+    });
 });

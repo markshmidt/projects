@@ -2,23 +2,91 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to Gomoku!</title>
+    <title>Gomoku Game</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 30px; background: url("images/background1.png"); background-size: 100%;}
-
-        #modeSelector { display: none; margin-top: 20px; }
+        .center-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
     </style>
 </head>
 <body>
-<h1 id="welcomeTitle">Welcome to Gomoku</h1>
-<button id="playButton">Start</button>
+<header class="header">
+    <div class="header-container">
+        <a href="https://mariia-shmidt-portfolio.com/" class="logo-download" title="Go to my portfolio website">
+            <img src="images/logo.png" alt="My portfolio website" class="logo-img" />
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a id="nav-rules" class="nav-btn">Rules</a></li>
+                <li><a id="nav-about" class="nav-btn">About</a></li>
+                <li><a href="https://github.com/markshmidt/projects/tree/main/JavaProjects/gomoku-web" class="nav-btn" target="_blank">GitHub</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-<div id="modeSelector">
-    <h2>Select game mode:</h2>
-    <button id="modeAiBtn">Single Player (vs AI)</button>
-    <button id="modePvpBtn">Two players </button>
+<main class="center-content">
+    <h1><span id="welcomeTitle" class="hvr-outline-in">Welcome to Gomoku! </span></h1>
+    <div id="modeSelector" class="buttons">
+        <button id="modeAiBtn" class="btn">Single Player (vs AI)</button>
+        <button id="modePvpBtn" class="btn">Two Players</button>
+    </div>
+</main>
+
+<!-- Rules Modal -->
+<div id="rulesModal" class="modal hidden">
+    <div class="modal-content">
+        <h3>Gomoku Rules</h3>
+        <p>Place five of your pieces in a row (horizontally, vertically, or diagonally) to win.</p>
+        <button class="closeModal">Close</button>
+    </div>
 </div>
 
-<script src="script.js"></script>
+<!-- About Modal -->
+<div id="aboutModal" class="modal hidden">
+    <div class="modal-content">
+        <h3>About</h3>
+        <p>Developed by: Mariia Shmidt, Eduard Kosenko, Evgenii Baldin, Leonard Eriyo, Mateus Sfeir</p>
+        <button class="closeModal">Close</button>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const aiBtn = document.getElementById("modeAiBtn");
+        const pvpBtn = document.getElementById("modePvpBtn");
+        const modeSelector = document.getElementById("modeSelector");
+
+        if (modeSelector) {
+            modeSelector.style.display = "flex";
+        }
+
+        if (aiBtn) aiBtn.addEventListener("click", () => window.location.href = "/ai");
+        if (pvpBtn) pvpBtn.addEventListener("click", () => window.location.href = "/pvp");
+
+        const rulesBtn = document.getElementById("nav-rules");
+        const aboutBtn = document.getElementById("nav-about");
+        const rulesModal = document.getElementById("rulesModal");
+        const aboutModal = document.getElementById("aboutModal");
+        const closeBtns = document.querySelectorAll(".closeModal");
+
+        if (rulesBtn && rulesModal) {
+            rulesBtn.addEventListener("click", () => rulesModal.classList.remove("hidden"));
+        }
+        if (aboutBtn && aboutModal) {
+            aboutBtn.addEventListener("click", () => aboutModal.classList.remove("hidden"));
+        }
+        closeBtns.forEach(btn => btn.addEventListener("click", () => {
+            rulesModal.classList.add("hidden");
+            aboutModal.classList.add("hidden");
+        }));
+    });
+</script>
 </body>
 </html>

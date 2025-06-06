@@ -2,45 +2,34 @@
 <head>
   <meta charset="UTF-8">
   <title>Gomoku AI</title>
-  <style>
-    body { font-family: sans-serif; text-align: center; padding: 30px; background: url("images/background1.png"); background-size: 100%;}
-    #gameBoard table {
-      background-image: url("/images/board.png");
-      background-size: contain;
-      background-repeat: no-repeat;
-      margin: auto;
-      border-collapse: collapse;
-      width: 630px;
-      height: 630px;
-    }
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-    #gameBoard td {
-      width: 70px;
-      height: 70px;
-      padding: 0;
-      box-sizing: border-box;
-      position: relative;
-    }
-
-    .piece {
-      max-width: 90%;
-      max-height: 90%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-  </style>
 </head>
 <body>
+<header class="header">
+  <div class="header-container">
+    <a href="https://mariia-shmidt-portfolio.com/" class="logo-download" title="Go to my portfolio website">
+      <img src="images/logo.png" alt="My portfolio website" class="logo-img" />
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a id="nav-rules" class="nav-btn">Rules</a></li>
+        <li><a id="nav-about" class="nav-btn">About</a></li>
+        <li><a href="https://github.com/markshmidt/projects/tree/main/JavaProjects/gomoku-web" class="nav-btn" target="_blank">GitHub</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
 <h2>Choose your color:</h2>
 <select id="playerSymbol">
   <option value="BLACK">BLACK</option>
   <option value="WHITE">WHITE</option>
 </select>
-<button id="playBtn">Play</button>
-<button id="restartButton" style="display: none;">Play again</button>
+<button id="playBtn" class="btn hvr-icon-bounce" ><i class="fa-solid fa-play"></i>Play</button>
+<button id="restartButton" style="display: none;", class="btn hvr-icon-spin"><i class="fa fa-refresh hvr-icon"></i>Restart</button>
 
 <div id="gameArea" style="display: none;">
   <div id="gameStatus">
