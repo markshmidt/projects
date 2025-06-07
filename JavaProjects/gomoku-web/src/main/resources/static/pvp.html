@@ -3,8 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <title>Gomoku PvP</title>
+
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 30px; background: url("images/background1.png"); background-size: 100%;}
+    body {
+      text-align: center;
+      color: white;
+      padding-top: 120px;
+    }
+
     #pvpBoard table {
       background-image: url("/images/board.png");
       background-size: contain;
@@ -33,18 +43,66 @@
       pointer-events: none;
     }
 
-
+    .controls {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    #pvpStatus, #pvpWinner {
+      font-size: 18px;
+      margin: 10px 0;
+    }
   </style>
-  <link rel="stylesheet" href="/styles/main.css" />
 </head>
 <body>
-<p id="pvpStatus">Move: BLACK</p>
+<header class="header">
+  <div class="header-container">
+    <a href="https://mariia-shmidt-portfolio.com/" class="logo-download" title="Go to my portfolio website">
+      <img src="images/logo.png" alt="My portfolio website" class="logo-img" />
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a id="nav-rules" class="nav-btn">Rules</a></li>
+        <li><a id="nav-about" class="nav-btn">About</a></li>
+        <li><a href="https://github.com/markshmidt/projects/tree/main/JavaProjects/gomoku-web" class="nav-btn" target="_blank">GitHub</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<h2 id="pvpStatus">Turn: BLACK</h2>
 <p id="pvpWinner"></p>
 <div id="pvpBoard"></div>
-<button id="pvpRestart" style="display: none">Restart the game</button>
-<button onclick="window.location.href='/'">Back to the menu</button>
 
+<div class="controls">
+  <button id="pvpRestart" class="btn hvr-icon-rotate" style="display: none">
+    <i class="fa-solid fa-rotate-right hvr-icon"></i> Restart
+  </button>
+  <button class="btn hvr-icon-buzz" onclick="window.location.href='/'">
+    <i class="fa-solid fa-backward hvr-icon"></i> Back to Menu
+  </button>
+</div>
+
+<!-- Rules Modal -->
+<div id="rulesModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>Gomoku Rules</h3>
+    <p>Place five of your pieces in a row (horizontally, vertically, or diagonally) to win.</p>
+    <button class="closeModal">Close</button>
+  </div>
+</div>
+
+<!-- About Modal -->
+<div id="aboutModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>About</h3>
+    <p>Developed by: Mariia Shmidt, Eduard Kosenko, Evgenii Baldin, Leonard Eriyo, Mateus Sfeir</p>
+    <button class="closeModal">Close</button>
+  </div>
+</div>
 
 <script src="pvp.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
