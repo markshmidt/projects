@@ -1,13 +1,98 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Gomoku AI</title>
   <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      text-align: center;
+      background: url("images/background1.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: white;
+      padding-top: 120px;
+    }
 
+    #gameBoard table {
+      background-image: url("/images/board.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin: auto;
+      border-collapse: collapse;
+      width: 630px;
+      height: 630px;
+    }
+
+    #gameBoard td {
+      width: 70px;
+      height: 70px;
+      padding: 0;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .piece {
+      max-width: 90%;
+      max-height: 90%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    #statusMessage, #winnerMessage {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    #winnerMessage {
+      font-size: 24px;
+      font-weight: bold;
+      color: #00b7ff;
+      text-shadow: 0 0 5px rgba(0,183,255,0.8);
+    }
+
+    .ai-controls {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .restart-icon {
+      display: inline-block;
+      transition: transform 0.4s ease;
+    }
+
+    .btn:hover .restart-icon {
+      transform: rotate(360deg);
+    }
+
+    #playerSymbol {
+      padding: 8px 12px;
+      border-radius: 20px;
+      border: none;
+      font-size: 16px;
+      background-color: #111729;
+      color: white;
+      margin-right: 10px;
+      box-shadow: 0 0 10px rgba(0, 183, 255, 0.4);
+    }
+
+    #startControls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
+
 <header class="header">
   <div class="header-container">
     <a href="https://mariia-shmidt-portfolio.com/" class="logo-download" title="Go to my portfolio website">
@@ -23,23 +108,69 @@
   </div>
 </header>
 
-<h2>Choose your color:</h2>
-<select id="playerSymbol">
-  <option value="BLACK">BLACK</option>
-  <option value="WHITE">WHITE</option>
-</select>
-<button id="playBtn" class="btn hvr-icon-bounce" ><i class="fa-solid fa-play"></i>Play</button>
-<button id="restartButton" style="display: none;", class="btn hvr-icon-spin"><i class="fa fa-refresh hvr-icon"></i>Restart</button>
-
-<div id="gameArea" style="display: none;">
-  <div id="gameStatus">
-    <p id="statusMessage"></p>
-    <p id="winnerMessage"></p>
+<main>
+  <h2 id="aiTitle">Choose your color</h2>
+  <div id="startControls">
+    <select id="playerSymbol">
+      <option value="BLACK">BLACK</option>
+      <option value="WHITE">WHITE</option>
+    </select>
+    <button id="playBtn" class="btn hvr-icon-forward">
+      <i class="fa-solid fa-play hvr-icon"></i> Play
+    </button>
   </div>
-  <div id="gameBoard"></div>
-  <button onclick="window.location.href='/'">Back to the menu</button>
+
+  <div id="gameArea" style="display: none;">
+
+    <p id="statusMessage">AI is waiting...</p>
+    <p id="winnerMessage"></p>
+    <div id="gameBoard"></div>
+    <div class="ai-controls">
+      <button id="restartButton" class="btn">
+        <i class="fa-solid fa-rotate-right hvr-icon-grow-rotate"></i> Restart
+      </button>
+
+      <button class="btn hvr-icon-buzz" onclick="window.location.href='/'">
+      <i class="fa-solid fa-backward hvr-icon"></i> Back to Menu
+    </button>
+  </div>
+
+
+<!-- Rules Modal -->
+<div id="rulesModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>Gomoku Rules</h3>
+    <p>Place five of your pieces in a row (horizontally, vertically, or diagonally) to win.</p>
+    <button class="closeModal">Close</button>
+  </div>
 </div>
 
+<!-- About Modal -->
+<div id="aboutModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>About</h3>
+    <p>Developed by: Mariia Shmidt, Eduard Kosenko, Evgenii Baldin, Leonard Eriyo, Mateus Sfeir</p>
+    <button class="closeModal">Close</button>
+  </div>
+</div>
+  </div>
+</main>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const rulesModal = document.getElementById("rulesModal");
+    const aboutModal = document.getElementById("aboutModal");
+
+    document.getElementById("nav-rules").onclick = () => rulesModal.classList.remove("hidden");
+    document.getElementById("nav-about").onclick = () => aboutModal.classList.remove("hidden");
+
+    document.querySelectorAll(".closeModal").forEach(btn => {
+      btn.onclick = () => {
+        rulesModal.classList.add("hidden");
+        aboutModal.classList.add("hidden");
+      };
+    });
+  });
+</script>
 
 <script src="ai.js"></script>
 </body>

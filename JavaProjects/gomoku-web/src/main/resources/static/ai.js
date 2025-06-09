@@ -128,14 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(symbol)
         }).then(() => {
-            statusMessage.textContent = `The game has started! Your color is: ${playerSymbol}`;
             winnerMessage.textContent = "";
-
-            document.getElementById("gameArea").style.display = "block";
-            playBtn.style.display = "none";
-            restartBtn.style.display = "inline";
-            symbolSelect.style.display = "none";
-            document.querySelector("h2").style.display = "none";
 
             fetchState();
         });
@@ -147,6 +140,14 @@ document.addEventListener("DOMContentLoaded", () => {
             method: "POST"
         }).then(() => {
             winnerMessage.textContent = "";
+            statusMessage.textContent = "Choose your color:";
+            document.getElementById("gameArea").style.display = "none";
+            playBtn.style.display = "inline-block";
+            restartBtn.style.display = "none";
+            symbolSelect.style.display = "inline-block";
+
+            const title = document.getElementById("aiTitle");
+            if (title) title.style.display = "block";
 
             fetchState();
         });
