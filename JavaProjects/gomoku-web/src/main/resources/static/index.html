@@ -13,6 +13,19 @@
             justify-content: center;
             height: 100vh;
         }
+        .rules-photo {
+            width: 100%;
+            max-width: 500px;
+            margin: 15px auto;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,183,255,0.3);
+            display: block;
+        }
+        @media (max-width: 768px){
+            h1 {
+                font-size: 80px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -44,6 +57,7 @@
     <div class="modal-content">
         <h3>Gomoku Rules</h3>
         <p>Place five of your pieces in a row (horizontally, vertically, or diagonally) to win.</p>
+        <img src="./images/rules.png" class="rules-photo" alt="Winning condition">
         <button class="closeModal">Close</button>
     </div>
 </div>

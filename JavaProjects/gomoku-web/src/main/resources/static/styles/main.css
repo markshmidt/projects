@@ -115,7 +115,10 @@ body {
 .hvr-outline-in::after {
     box-shadow: 0 0 0 2px #00b7ff;
 }
-
+.rules-photo{
+    max-width: 200px;
+    max-height: 100px;
+}
 /* Logo Styling */
 .logo-download {
     display: inline-block;

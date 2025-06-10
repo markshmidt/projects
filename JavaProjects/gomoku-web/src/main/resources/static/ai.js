@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const playBtn = document.getElementById("playBtn");
         if (playBtn) {
             playBtn.onclick = startGame;
+            console.log("Play button clicked!");
+
         } else {
             console.error("Кнопка playBtn не найдена в DOM");
         }
@@ -129,10 +131,16 @@ document.addEventListener("DOMContentLoaded", () => {
             body: JSON.stringify(symbol)
         }).then(() => {
             winnerMessage.textContent = "";
+            document.getElementById("gameArea").style.display = "block";
+            playBtn.style.display = "none";
+            restartBtn.style.display = "inline-block";
+            symbolSelect.style.display = "none";
+            document.getElementById("aiTitle").style.display = "none";
 
             fetchState();
         });
     }
+
 
     // Reset the game
     function resetGame() {

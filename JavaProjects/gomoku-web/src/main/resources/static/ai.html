@@ -68,9 +68,6 @@
       transition: transform 0.4s ease;
     }
 
-    .btn:hover .restart-icon {
-      transform: rotate(360deg);
-    }
 
     #playerSymbol {
       padding: 8px 12px;
@@ -89,6 +86,45 @@
       gap: 10px;
       margin-bottom: 20px;
     }
+    .rules-photo {
+      width: 100%;
+      max-width: 500px;
+      margin: 15px auto;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,183,255,0.3);
+      display: block;
+    }
+    @media (max-width: 768px) {
+      #gameBoard table {
+        width: 90vw;
+        height: 90vw;
+      }
+
+      #gameBoard td {
+        width: auto;
+        height: auto;
+      }
+
+      #statusMessage, #winnerMessage {
+        font-size: 16px;
+      }
+
+      #winnerMessage {
+        font-size: 20px;
+      }
+
+      .btn {
+        font-size: 14px;
+        padding: 8px 12px;
+        width: auto;
+        min-width: 60px;
+        height: auto;
+      }
+
+      #playerSymbol {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -101,7 +137,7 @@
     <nav>
       <ul class="nav-links">
         <li><a id="nav-rules" class="nav-btn">Rules</a></li>
-        <li><a id="nav-about" class="nav-btn">About</a></li>
+        <li><a id="nav-about" class="nav-btn">Credits</a></li>
         <li><a href="https://github.com/markshmidt/projects/tree/main/JavaProjects/gomoku-web" class="nav-btn" target="_blank">GitHub</a></li>
       </ul>
     </nav>
@@ -121,40 +157,38 @@
   </div>
 
   <div id="gameArea" style="display: none;">
-
     <p id="statusMessage">AI is waiting...</p>
     <p id="winnerMessage"></p>
     <div id="gameBoard"></div>
     <div class="ai-controls">
-      <button id="restartButton" class="btn">
-        <i class="fa-solid fa-rotate-right hvr-icon-grow-rotate"></i> Restart
+      <button id="restartButton" class="btn hvr-icon-rotate">
+        <i class="fa-solid fa-rotate-right hvr-icon "></i> Restart
       </button>
-
       <button class="btn hvr-icon-buzz" onclick="window.location.href='/'">
-      <i class="fa-solid fa-backward hvr-icon"></i> Back to Menu
-    </button>
+        <i class="fa-solid fa-backward hvr-icon"></i> Back to Menu
+      </button>
+    </div>
   </div>
 
-
-<!-- Rules Modal -->
-<div id="rulesModal" class="modal hidden">
-  <div class="modal-content">
-    <h3>Gomoku Rules</h3>
-    <p>Place five of your pieces in a row (horizontally, vertically, or diagonally) to win.</p>
-    <button class="closeModal">Close</button>
+  <!-- Rules Modal -->
+  <div id="rulesModal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Gomoku Rules</h3>
+      <p>Place five of your pieces in a row (horizontally, vertically, or diagonally) to win.</p>
+      <button class="closeModal">Close</button>
+    </div>
   </div>
-</div>
 
-<!-- About Modal -->
-<div id="aboutModal" class="modal hidden">
-  <div class="modal-content">
-    <h3>About</h3>
-    <p>Developed by: Mariia Shmidt, Eduard Kosenko, Evgenii Baldin, Leonard Eriyo, Mateus Sfeir</p>
-    <button class="closeModal">Close</button>
-  </div>
-</div>
+  <!-- About Modal -->
+  <div id="aboutModal" class="modal hidden">
+    <div class="modal-content">
+      <h3>About</h3>
+      <p>Developed by: Mariia Shmidt, Eduard Kosenko, Evgenii Baldin, Leonard Eriyo, Mateus Sfeir</p>
+      <button class="closeModal">Close</button>
+    </div>
   </div>
 </main>
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const rulesModal = document.getElementById("rulesModal");

@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }).then(() => {
             currentPlayer = "BLACK";
             winnerMessage.textContent = "";
-            statusMessage.textContent = "Текущий ход: BLACK";
+            statusMessage.textContent = "Turn: BLACK";
             restartBtn.style.display = "none";
             fetchState();
         });
