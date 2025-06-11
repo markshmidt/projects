@@ -16,6 +16,10 @@
       color: white;
       padding-top: 120px;
     }
+    #header-container + main {
+      margin-top: 80px;
+    }
+
 
     #gameBoard table {
       background-image: url("/images/board.png");
@@ -86,13 +90,8 @@
       gap: 10px;
       margin-bottom: 20px;
     }
-    .rules-photo {
-      width: 100%;
-      max-width: 500px;
-      margin: 15px auto;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,183,255,0.3);
-      display: block;
+    #aiTitle{
+      padding: 20px;
     }
     @media (max-width: 768px) {
       #gameBoard table {
@@ -129,20 +128,8 @@
 </head>
 <body>
 
-<header class="header">
-  <div class="header-container">
-    <a href="https://mariia-shmidt-portfolio.com/" class="logo-download" title="Go to my portfolio website">
-      <img src="images/logo.png" alt="My portfolio website" class="logo-img" />
-    </a>
-    <nav>
-      <ul class="nav-links">
-        <li><a id="nav-rules" class="nav-btn">Rules</a></li>
-        <li><a id="nav-about" class="nav-btn">Credits</a></li>
-        <li><a href="https://github.com/markshmidt/projects/tree/main/JavaProjects/gomoku-web" class="nav-btn" target="_blank">GitHub</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<div id="header-container"></div>
+
 
 <main>
   <h2 id="aiTitle">Choose your color</h2>
@@ -169,40 +156,28 @@
       </button>
     </div>
   </div>
-
-  <!-- Rules Modal -->
-  <div id="rulesModal" class="modal hidden">
-    <div class="modal-content">
-      <h3>Gomoku Rules</h3>
-      <p>Place five of your pieces in a row (horizontally, vertically, or diagonally) to win.</p>
-      <button class="closeModal">Close</button>
-    </div>
-  </div>
-
-  <!-- About Modal -->
-  <div id="aboutModal" class="modal hidden">
-    <div class="modal-content">
-      <h3>About</h3>
-      <p>Developed by: Mariia Shmidt, Eduard Kosenko, Evgenii Baldin, Leonard Eriyo, Mateus Sfeir</p>
-      <button class="closeModal">Close</button>
-    </div>
-  </div>
 </main>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const rulesModal = document.getElementById("rulesModal");
-    const aboutModal = document.getElementById("aboutModal");
+    fetch("./includes/header.html")
+            .then(res => res.text())
+            .then(data => {
+              document.getElementById("header-container").innerHTML = data;
 
-    document.getElementById("nav-rules").onclick = () => rulesModal.classList.remove("hidden");
-    document.getElementById("nav-about").onclick = () => aboutModal.classList.remove("hidden");
+              document.getElementById("nav-rules").onclick = () =>
+                      document.getElementById("rulesModal").classList.remove("hidden");
 
-    document.querySelectorAll(".closeModal").forEach(btn => {
-      btn.onclick = () => {
-        rulesModal.classList.add("hidden");
-        aboutModal.classList.add("hidden");
-      };
-    });
+              document.getElementById("nav-about").onclick = () =>
+                      document.getElementById("aboutModal").classList.remove("hidden");
+
+              document.querySelectorAll(".closeModal").forEach(btn => {
+                btn.onclick = () => {
+                  document.getElementById("rulesModal").classList.add("hidden");
+                  document.getElementById("aboutModal").classList.add("hidden");
+                };
+              });
+            });
   });
 </script>
 

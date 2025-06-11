@@ -92,9 +92,11 @@ body {
     cursor: pointer;
     box-sizing: border-box;
     justify-content: center;
+    align-items: center;
     width: 260px;
     height: 60px;
     font-size: 24px;
+    gap: 8px;
     color: white;
     background-color: #00b7ff;
     border: none;
@@ -116,8 +118,12 @@ body {
     box-shadow: 0 0 0 2px #00b7ff;
 }
 .rules-photo{
-    max-width: 200px;
-    max-height: 100px;
+    max-width: 300px;
+    max-height: 200px;
+    margin: 15px auto;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,183,255,0.3);
+    display: block;
 }
 /* Logo Styling */
 .logo-download {

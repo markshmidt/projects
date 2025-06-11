@@ -74,6 +74,7 @@
 
       #pvpStatus, #pvpWinner {
         font-size: 16px;
+        padding: 20px;
       }
 
 
@@ -88,20 +89,8 @@
   </style>
 </head>
 <body>
-<header class="header">
-  <div class="header-container">
-    <a href="https://mariia-shmidt-portfolio.com/" class="logo-download" title="Go to my portfolio website">
-      <img src="images/logo.png" alt="My portfolio website" class="logo-img" />
-    </a>
-    <nav>
-      <ul class="nav-links">
-        <li><a id="nav-rules" class="nav-btn">Rules</a></li>
-        <li><a id="nav-about" class="nav-btn">About</a></li>
-        <li><a href="https://github.com/markshmidt/projects/tree/main/JavaProjects/gomoku-web" class="nav-btn" target="_blank">GitHub</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+
+<div id="header-container"></div>
 
 <h2 id="pvpStatus">Turn: BLACK</h2>
 <p id="pvpWinner"></p>
@@ -116,25 +105,30 @@
   </button>
 </div>
 
-<!-- Rules Modal -->
-<div id="rulesModal" class="modal hidden">
-  <div class="modal-content">
-    <h3>Gomoku Rules</h3>
-    <p>Place five of your pieces in a row (horizontally, vertically, or diagonally) to win.</p>
-    <button class="closeModal">Close</button>
-  </div>
-</div>
-
-<!-- About Modal -->
-<div id="aboutModal" class="modal hidden">
-  <div class="modal-content">
-    <h3>About</h3>
-    <p>Developed by: Mariia Shmidt, Eduard Kosenko, Evgenii Baldin, Leonard Eriyo, Mateus Sfeir</p>
-    <button class="closeModal">Close</button>
-  </div>
-</div>
 
 <script src="pvp.js"></script>
 <script src="script.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    fetch("./includes/header.html")
+            .then(res => res.text())
+            .then(data => {
+              document.getElementById("header-container").innerHTML = data;
+
+              document.getElementById("nav-rules").onclick = () =>
+                      document.getElementById("rulesModal").classList.remove("hidden");
+
+              document.getElementById("nav-about").onclick = () =>
+                      document.getElementById("aboutModal").classList.remove("hidden");
+
+              document.querySelectorAll(".closeModal").forEach(btn => {
+                btn.onclick = () => {
+                  document.getElementById("rulesModal").classList.add("hidden");
+                  document.getElementById("aboutModal").classList.add("hidden");
+                };
+              });
+            });
+  });
+</script>
 </body>
 </html>
