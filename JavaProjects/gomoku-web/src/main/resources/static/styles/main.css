@@ -50,15 +50,23 @@ body {
     padding: 30px;
     border-radius: 8px;
     color: white;
-    max-width: 400px;
+    max-width: 800px;
+    max-height: 600px;
     text-align: center;
     box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
 }
-
+.rules-photo{
+    max-width: 700px;
+    max-height: 500px;
+    margin: 15px auto;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,183,255,0.3);
+    display: block;
+}
 .closeModal {
     margin-top: 20px;
-    background: #0ff;
-    color: #111729;
+    background: #111729;
+    color: whitesmoke;
     border: none;
     padding: 8px 16px;
     cursor: pointer;
@@ -117,14 +125,7 @@ body {
 .hvr-outline-in::after {
     box-shadow: 0 0 0 2px #00b7ff;
 }
-.rules-photo{
-    max-width: 300px;
-    max-height: 200px;
-    margin: 15px auto;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,183,255,0.3);
-    display: block;
-}
+
 /* Logo Styling */
 .logo-download {
     display: inline-block;
