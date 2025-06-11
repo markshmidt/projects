@@ -22,7 +22,7 @@ Mark 15/15 was received :)
 
 ## Technologies Used
 
-- **Backend**: Java 17, Spring Boot (REST API)
+- **Backend**: Java 21, Spring Boot (REST API)
 - **Frontend**: HTML5, CSS3, JavaScript, Font Awesome, Hover.css
 - **Other**: Responsive design, modular HTML (with dynamic header injection)
 
