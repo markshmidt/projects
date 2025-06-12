@@ -33,12 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 const value = state[i][j];
                 if (value === "BLACK") {
                     const img = document.createElement("img");
-                    img.src = "/images/black.png";
+                    img.src = "images/black.png";
                     img.classList.add("piece");
                     cell.appendChild(img);
                 } else if (value === "WHITE") {
                     const img = document.createElement("img");
-                    img.src = "/images/white.png";
+                    img.src = "images/white.png";
                     img.classList.add("piece");
                     cell.appendChild(img);
                 }
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Receiving JSON state from server
     function fetchState() {
-        fetch("/api/ai/state")
+        fetch("api/ai/state")
             .then(res => res.json())
             .then(data => {
                 console.log("DEBUG fetchState():", data);
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Put player's move locally into DOM before server's answer
         const cell = boardContainer.querySelectorAll("tr")[row].children[col];
         const img = document.createElement("img");
-        img.src = playerSymbol === "BLACK" ? "/images/black.png" : "/images/white.png";
+        img.src = playerSymbol === "BLACK" ? "images/black.png" : "images/white.png";
         img.classList.add("piece");
         cell.appendChild(img);
 
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Send player's move to server (coordinates and cell index)
         const cellIndex = playerSymbol === "BLACK" ? 0 : 1;
-        fetch("/api/ai/move", {
+        fetch("api/ai/move", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ row, col, cell: cellIndex })
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const symbol = symbolSelect.value;
         playerSymbol = symbol;
 
-        fetch("/api/ai/start", {
+        fetch("api/ai/start", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(symbol)
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Reset the game
     function resetGame() {
-        fetch("/api/ai/reset", {
+        fetch("api/ai/reset", {
             method: "POST"
         }).then(() => {
             winnerMessage.textContent = "";

@@ -6,17 +6,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (modeSelector) {
         modeSelector.style.display = "flex";
     }
-    if (aiBtn) {
-        aiBtn.addEventListener("click", () => {
-            window.location.href = "/ai";
-        });
-    }
+    if (aiBtn) aiBtn.addEventListener("click", () => {
+        window.location.href = window.location.pathname.replace(/[^/]*$/, '') + 'ai';
+    });
 
-    if (pvpBtn) {
-        pvpBtn.addEventListener("click", () => {
-            window.location.href = "/pvp";
-        });
-    }
+    if (pvpBtn) pvpBtn.addEventListener("click", () => {
+        window.location.href = window.location.pathname.replace(/[^/]*$/, '') + 'pvp';
+    });
     const rulesModal = document.getElementById("rulesModal");
     const aboutModal = document.getElementById("aboutModal");
 

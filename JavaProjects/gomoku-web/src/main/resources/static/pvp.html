@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>Gomoku PvP</title>
-
-  <link rel="stylesheet" href="/styles/main.css" />
+  <base href="/gomoku/">
+  <link rel="stylesheet" href="styles/main.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
@@ -16,7 +16,7 @@
     }
 
     #pvpBoard table {
-      background-image: url("/images/board.png");
+      background-image: url("images/board.png");
       background-size: contain;
       background-repeat: no-repeat;
       margin: auto;
@@ -108,7 +108,7 @@
   <button id="pvpRestart" class="btn hvr-icon-rotate" style="display: none">
     <i class="fa-solid fa-rotate-right hvr-icon"></i> Restart
   </button>
-  <button class="btn hvr-icon-buzz" onclick="window.location.href='/'">
+  <button class="btn hvr-icon-buzz" onclick="window.location.href='/gomoku/'">
     <i class="fa-solid fa-backward hvr-icon"></i> Back to Menu
   </button>
 </div>
@@ -118,7 +118,7 @@
 <script src="script.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    fetch("./includes/header.html")
+    fetch("includes/header.html")
             .then(res => res.text())
             .then(data => {
               document.getElementById("header-container").innerHTML = data;

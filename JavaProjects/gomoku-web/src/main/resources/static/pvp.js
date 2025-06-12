@@ -20,12 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (value === "BLACK") {
                     const img = document.createElement("img");
-                    img.src = "/images/black.png";
+                    img.src = "images/black.png";
                     img.classList.add("piece");
                     cell.appendChild(img);
                 } else if (value === "WHITE") {
                     const img = document.createElement("img");
-                    img.src = "/images/white.png";
+                    img.src = "images/white.png";
                     img.classList.add("piece");
                     cell.appendChild(img);
                 }
@@ -45,9 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         boardContainer.appendChild(table);
     }
+    const basePath = window.location.pathname.replace(/\/[^\/]*$/, "/");
 
     function fetchState() {
-        fetch("/api/pvp/state")
+        fetch(basePath+"api/pvp/state")
             .then(res => res.json())
             .then(data => {
                 drawBoard(data.state || data);
@@ -67,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function makeMove(row, col) {
         const cellIndex = currentPlayer === "BLACK" ? 0 : 1;
 
-        fetch("/api/pvp/move", {
+        fetch("api/pvp/move", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ row, col, cell: cellIndex })
@@ -82,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function resetGame() {
-        fetch("/api/pvp/reset", {
+        fetch("api/pvp/reset", {
             method: "POST"
         }).then(() => {
             currentPlayer = "BLACK";

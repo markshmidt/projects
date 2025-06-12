@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Gomoku Game</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="styles/main.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+
+    <base href="/gomoku/">
     <style>
         .center-content {
             display: flex;
@@ -72,10 +75,16 @@
             modeSelector.style.display = "flex";
         }
 
-        if (aiBtn) aiBtn.addEventListener("click", () => window.location.href = "/ai");
-        if (pvpBtn) pvpBtn.addEventListener("click", () => window.location.href = "/pvp");
+            if (aiBtn) aiBtn.addEventListener("click", () => {
+                window.location.href = window.location.pathname.replace(/[^/]*$/, '') + 'ai';
+            });
 
-        const rulesBtn = document.getElementById("nav-rules");
+            if (pvpBtn) pvpBtn.addEventListener("click", () => {
+                window.location.href = window.location.pathname.replace(/[^/]*$/, '') + 'pvp';
+            });
+
+
+            const rulesBtn = document.getElementById("nav-rules");
         const aboutBtn = document.getElementById("nav-about");
         const rulesModal = document.getElementById("rulesModal");
         const aboutModal = document.getElementById("aboutModal");
