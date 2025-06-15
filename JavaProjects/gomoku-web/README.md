@@ -30,7 +30,7 @@ Mark 15/15 was received :)
 
 ## Setup Instructions
 
-To run the project: *link*
+To run the project: https://mariia-shmidt-portfolio.com/gomoku/
 
 
 
