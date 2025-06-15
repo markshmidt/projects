@@ -2,6 +2,11 @@ package com.gomoku.ai;
 
 import com.gomoku.model.Board;
 import com.gomoku.model.Cell;
+import com.gomoku.model.HashMapCache;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.*;
 
 //  Group Project COMP 2080
 //  Eduard Kosenko 101480050
@@ -15,104 +20,101 @@ public class AI {
     public int[] getNextMove(Board board, Cell cellType) {
         return minimax(board, cellType);
     }
+    private String boardHash(Board board) {
+        StringBuilder sb = new StringBuilder();
+        for (int row = 0; row < board.getSize(); row++) {
+            for (int col = 0; col < board.getSize(); col++) {
+                sb.append(board.getCell(row, col).ordinal());
+            }
+        }
+        return sb.toString();
+    }
+
 
     public int[] minimax(Board board, Cell playerCell) {
-        int[] bestMove = new int[2];
+        int[] bestMove = null;
         int bestScore = Integer.MIN_VALUE;
         int alpha = Integer.MIN_VALUE;
         int beta = Integer.MAX_VALUE;
 
         Cell opponentCell = (playerCell == Cell.BLACK) ? Cell.WHITE : Cell.BLACK;
-
-        int size = board.getSize();
-
         int[][] possibleMoves = getSortedPossibleMoves(board, playerCell);
-
+        int size = board.getSize();
         int[][] scores = new int[size][size];
 
-        if (possibleMoves.length == 1){
-            bestMove[0] = possibleMoves[0][0];
-            bestMove[1] = possibleMoves[0][1];
-            return bestMove;
+        HashMapCache<String, Integer> cache = new HashMapCache<>();
+
+        if (possibleMoves.length == 0) {
+            System.err.println("No possible moves found!");
+            int center = size / 2;
+            return new int[]{center, center};
         }
 
         for (int i = 0; i < possibleMoves.length; i++) {
             int row = possibleMoves[i][0];
             int col = possibleMoves[i][1];
-            if (board.getCell(row, col) != Cell.EMPTY) {
-                continue;
-            }
 
-            int[] move = {row, col};
-
-
-            // Make move
-            // Reuse the same instance of the board
             Board copy = board.clone();
             copy.setTile(row, col, playerCell);
 
             if (copy.checkWin(row, col)) {
-                return new int[]{row, col}; // без board.setTile()
+                return new int[]{row, col};
             }
 
-            int score = minimaxValue(copy, 4, false, playerCell, opponentCell, alpha, beta); // используем copy
-
+            int score = minimaxValue(copy, 5, false, playerCell, opponentCell, alpha, beta, cache);
             scores[row][col] = score;
 
-            if (score >= bestScore) {
+            if (score > bestScore) {
                 bestScore = score;
-                bestMove[0] = row;
-                bestMove[1] = col;
+                bestMove = new int[]{row, col};
             }
-            alpha = Math.max(alpha, bestScore);
 
+            alpha = Math.max(alpha, bestScore);
         }
-        // Log evaluation for best move
-//        System.out.println("Best move: " + bestMove[0] + ", " + bestMove[1] + " with score: " + bestScore);
-//        System.out.println("Scores: ");
-//        for (int i = 0; i < size; i++) {
-//            for (int j = 0; j < size; j++) {
-//                System.out.printf("%-7d", scores[i][j]);
-//            }
-//            System.out.println();
-//        }
+
+        // Fallback if bestMove is never updated (сhoose the first one possible)
+        if (bestMove == null) {
+            System.err.println("No best move selected");
+            return possibleMoves[0];
+        }
+
         return bestMove;
     }
 
 
-    public int minimaxValue(Board board, int depth, boolean isMaximizing, Cell playerCell, Cell opponentCell, int alpha, int beta) {
 
-        // Check of winning condition has to be performed before the function call
-        // Casue I don't want to implement logic of checking win condition here, while I have checkWin in board class
-        // Update: I found a pretty interesting way identifying winning condition (maybe could be applied to pattern matching as well)
-        // https://medium.com/@LukeASalamone/creating-an-ai-for-gomoku-28a4c84c7a52#:~:text=To%20determine%20the%20score%20of,the%20state%20of%20the%20board.
 
+    public int minimaxValue(Board board, int depth, boolean isMaximizing,
+                            Cell playerCell, Cell opponentCell,
+                            int alpha, int beta, HashMapCache<String, Integer> cache) {
         if (depth == 0) {
             return boardEvaluation(board, playerCell);
         }
 
-        int boardSize = board.getSize();
+        String boardKey = boardHash(board);
+        if (cache.contains(boardKey)) {
+            return cache.get(boardKey);
+        }
 
         int totalScore = isMaximizing ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-
-
         int[][] possibleMoves = getSortedPossibleMoves(board, opponentCell);
-
-
-        for (int i = 0; i < possibleMoves.length; i++) {
+        int movesToConsider = Math.min(possibleMoves.length, 16);
+        for (int i = 0; i < movesToConsider; i++) {
             int row = possibleMoves[i][0];
             int col = possibleMoves[i][1];
+
             Board copy = board.clone();
             copy.setTile(row, col, isMaximizing ? playerCell : opponentCell);
 
             if (copy.checkWin(row, col)) {
-                return isMaximizing ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+                int winScore = isMaximizing ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+                cache.put(boardKey, winScore);
+                return winScore;
             }
 
             int score = minimaxValue(copy, depth - 1, !isMaximizing,
-                    playerCell, opponentCell, alpha, beta);
+                    playerCell, opponentCell, alpha, beta, cache);
 
-            // Update score
             if (isMaximizing) {
                 totalScore = Math.max(totalScore, score);
                 alpha = Math.max(alpha, score);
@@ -124,11 +126,12 @@ public class AI {
             if (beta <= alpha) {
                 break;
             }
-
-
         }
+
+        cache.put(boardKey, totalScore);
         return totalScore;
     }
+
 
 
     public Integer boardEvaluation(Board board, Cell playerCell) {

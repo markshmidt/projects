@@ -3,19 +3,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // Getting all DOM-elements
     const boardContainer = document.getElementById("gameBoard");
         const playBtn = document.getElementById("playBtn");
-        if (playBtn) {
-            playBtn.onclick = startGame;
-            console.log("Play button clicked!");
-
-        } else {
-            console.error("Кнопка playBtn не найдена в DOM");
-        }
+    if (playBtn) {
+        playBtn.onclick = startGame;
+    } else {
+        console.error("Play button not found");
+    }
 
 
     const restartBtn = document.getElementById("restartButton");
     const statusMessage = document.getElementById("statusMessage");
     const winnerMessage = document.getElementById("winnerMessage");
     const symbolSelect = document.getElementById("playerSymbol");
+    let gameState = {};
+
 
     // Player's symbol (BLACK or WHITE)
     let playerSymbol = null;
@@ -64,15 +64,19 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(res => res.json())
             .then(data => {
                 console.log("DEBUG fetchState():", data);
+                gameState = data;
                 const boardState = data.state || data;
                 drawBoard(boardState);
                 if (statusMessage)
                     statusMessage.textContent = `Current move: ${data.currentMove || "..."}`;
+                    boardContainer.classList.remove("disabled");
                 if (data.winner && data.winner !== "EMPTY") {
                     winnerMessage.textContent = `Winner is: ${data.winner}`;
+                    boardContainer.classList.add("disabled");
                     statusMessage.textContent = "";
                 } else if (data.full && !data.winner) {
                     winnerMessage.textContent = "It's a draw!";
+                    boardContainer.classList.add("disabled");
                     statusMessage.textContent = "";
                 }
             });
@@ -82,6 +86,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function makeMove(row, col) {
         if (waiting) return;
         waiting = true;
+
+        if (gameState.winner && gameState.winner !== "EMPTY") {
+            console.warn("no more moves allowed");
+            return;
+        }
+
 
         // Put player's move locally into DOM before server's answer
         const cell = boardContainer.querySelectorAll("tr")[row].children[col];

@@ -55,6 +55,8 @@ public class GameController {
     @PostMapping("/move")
     public Board makeMove(@RequestBody Move move) {
         //if cell is not empty or move is illegal
+        long start = System.currentTimeMillis();
+
         try {
             board.makeMove(move);
         } catch (IllegalArgumentException e) {
@@ -67,6 +69,7 @@ public class GameController {
                 int[] aiMove = ai.getNextMove(board, aiSymbol);
                 try {
                     board.makeMove(new Move(aiMove[0], aiMove[1], aiSymbol));
+                    System.out.println("AI move took " + (System.currentTimeMillis() - start) + " ms");
                 } catch (IllegalArgumentException e) {
                     System.out.println("Something went wrong: " + e.getMessage());
                     return board;

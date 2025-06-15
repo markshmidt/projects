@@ -20,6 +20,11 @@
     #header-container + main {
       margin-top: 80px;
     }
+    #gameBoard.disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
 
 
     #gameBoard table {
@@ -96,8 +101,8 @@
     }
     @media (max-width: 768px) {
       #gameBoard table {
-        width: 90vw;
-        height: 90vw;
+        width: 100vw;
+        height: 100vw;
       }
 
       #gameBoard td {
@@ -106,15 +111,15 @@
       }
 
       #statusMessage, #winnerMessage {
-        font-size: 16px;
+        font-size: 24px;
       }
 
       #winnerMessage {
-        font-size: 20px;
+        font-size: 24px;
       }
 
       .btn {
-        font-size: 14px;
+        font-size: 24px;
         padding: 8px 12px;
         width: auto;
         min-width: 60px;
@@ -122,7 +127,7 @@
       }
 
       #playerSymbol {
-        font-size: 14px;
+        font-size: 24px;
       }
     }
   </style>

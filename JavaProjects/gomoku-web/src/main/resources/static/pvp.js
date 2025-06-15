@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const statusMessage = document.getElementById("pvpStatus");
     const winnerMessage = document.getElementById("pvpWinner");
     const restartBtn = document.getElementById("pvpRestart");
+    let gameState = {};
 
     let currentPlayer = "BLACK";
 
@@ -51,22 +52,31 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch(basePath+"api/pvp/state")
             .then(res => res.json())
             .then(data => {
+                gameState = data;
                 drawBoard(data.state || data);
 
                 if (data.winner && data.winner !== "EMPTY") {
                     winnerMessage.textContent = `The winner is: ${data.winner}`;
                     statusMessage.textContent = "";
+                    boardContainer.classList.add("disabled");
                 } else if (data.full && !data.winner) {
                     winnerMessage.textContent = "It's a draw!";
                     statusMessage.textContent = "";
+                    boardContainer.classList.add("disabled");
                 } else {
                     statusMessage.textContent = `Turn: ${data.currentMove}`;
+                    boardContainer.classList.remove("disabled");
                 }
             });
     }
 
     function makeMove(row, col) {
         const cellIndex = currentPlayer === "BLACK" ? 0 : 1;
+        if (gameState.winner && gameState.winner !== "EMPTY") {
+            console.warn("no more moves allowed");
+            return;
+        }
+
 
         fetch("api/pvp/move", {
             method: "POST",
